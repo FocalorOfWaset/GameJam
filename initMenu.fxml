@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitMenuController">
+	<children>
+		<Text id="title" >Chess</Text>
+		<Button onAction="#handleLoginBtn" prefWidth="120.0">Login</Button>
+		<Button onAction="#handleSignupBtn" prefWidth="120.0">Create Account</Button>
+		<Button onAction="#handleGuestBtn" prefWidth="120.0" >Continue as Guest</Button>
+		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="120.0">Close</Button>
+	</children>
+	<padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
+   <stylesheets>
+   		<URL value="@board.css" />
+   </stylesheets>
+</VBox>
