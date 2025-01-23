@@ -10,14 +10,15 @@ public class Main extends Application {
 	//Entry point !!!!
 	@Override
 	public void start(Stage primaryStage) {
-			OpenWindow(350,"initMenu.fxml",null);
+			OpenWindow(350,"menu.fxml",null);
+			OpenPopup("popups working");
 	}
 	
 	//launches the JavaFX application
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	//TODO change scenes instead of opening and closing stages
 	/**Opens a square window of width 'size' */
 	public static void OpenWindow(int size, String fxml) {
 		OpenWindow(size,size,fxml,null);
@@ -41,19 +42,26 @@ public class Main extends Application {
 			//retrieves fxml template from views folder
 			String path = "views/" + fxml;
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     
-			Parent root = (Parent)fxmlLoader.load();   
+			Parent root = (Parent)fxmlLoader.load();
+			//creates scene from fxml with specified dimensions   
 			Scene scene = new Scene(root,width,height);
 			window.setTitle("Game Name");			
 			window.setScene(scene);
 			window.getIcons().add(new Image(Main.class.getResource("images/blackPawn.png").toExternalForm()));
 			window.setResizable(true);
 			window.show();
-			//closes stage if provided
+			//closes window provided
 			if(stage!=null) {
 				stage.close();
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**Opens a small popup window containing the method */
+	public static void OpenPopup(String message) {
+		MessageController.displayText = message;
+		OpenWindow(200,150,"message.fxml",null);
 	}
 }

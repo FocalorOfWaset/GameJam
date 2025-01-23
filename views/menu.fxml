@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitMenuController">
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuController">
 	<children>
-		<Text id="title" >Chess</Text>
-		<Button onAction="#handleLoginBtn" prefWidth="120.0">Login</Button>
-		<Button onAction="#handleSignupBtn" prefWidth="120.0">Create Account</Button>
-		<Button onAction="#handleGuestBtn" prefWidth="120.0" >Continue as Guest</Button>
+		<Text id="title">Game Name Here</Text>
+		<Button onAction="#handlePlayBtn" prefWidth="120.0">Play</Button>
+		<Button onAction="#handleSettingsBtn" prefWidth="120.0">Options</Button>
 		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="120.0">Close</Button>
 	</children>
 	<padding>
