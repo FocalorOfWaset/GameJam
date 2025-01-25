@@ -7,10 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class Main extends Application {
-	//Entry point !!!!
-
 	private static Stage window;
-
+	//Entry point !!!!
 	@Override
 	public void start(Stage primaryStage) {
 		//creates window
@@ -33,7 +31,7 @@ public class Main extends Application {
 		ChangeScene(size,size,fxml);
 	}
 
-	/**hanges to scene to square scene from fxml source with width and height as specified.*/
+	/**Changes to scene to square scene from fxml source with width and height as specified.*/
   public static void ChangeScene(int width, int height, String fxml) {
 		try {
 			window.hide();
