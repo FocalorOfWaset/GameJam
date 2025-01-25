@@ -15,8 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.event.EventHandler;
+import javafx.animation.AnimationTimer;
 
 
 public class GameController implements Initializable {
@@ -28,10 +27,13 @@ public class GameController implements Initializable {
 	@FXML private GridPane grid;
 	//keeps track of grid of panes 
 	private StackPane panels[][];
+	private AnimationTimer timer;
 	private int along = 0;
 	private int up = 1;
+	private int time = 0;
 	
 	@FXML protected void handleExitBtn(ActionEvent event) {
+		timer.stop();
 		Main.ChangeScene(350,"menu.fxml");
 	}
 
@@ -64,7 +66,7 @@ public class GameController implements Initializable {
     }
 		//add pawn image to stackpane
 		panels[0][1].getChildren().add(new ImageView(getResource("blackPawn.png")));	
-		//add keyboard event handler to scene (TODO may not work)
+		//add keyboard event handler to scene 
 		rootbox.getScene().setOnKeyPressed(e -> { 
 				KeyCode code = e.getCode();
 				if (code == KeyCode.D) {
@@ -77,6 +79,19 @@ public class GameController implements Initializable {
 					movePawn(1,0);
 				}
 		});
+		//create animation timer
+		timer = new AnimationTimer() {
+			@Override
+			public void handle(long now) {
+				if ((time % 60) % 2 == 0) {
+					movePawn(1,0);
+				} else {
+					movePawn(-1, 0);
+				}
+				time = (time + 1) % 60;
+			}
+		};
+		timer.start();
 	}
 
 	@Override
