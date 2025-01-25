@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
-import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -33,15 +32,17 @@ public class GameController implements Initializable {
 	private int up = 1;
 	
 	@FXML protected void handleExitBtn(ActionEvent event) {
-		Main.OpenWindow(350,"menu.fxml",(Stage)exit.getScene().getWindow());
+		Main.ChangeScene(350,"menu.fxml");
 	}
 
 	@FXML protected void handleStartBtn(ActionEvent event) {
 		grid.getChildren().clear();
     for (int i=0;i<8;i++) {
       for(int j=0;j<8;j++) {
+				//creates stackpanes
         StackPane pane = new StackPane();
         panels[i][j] = pane;
+				//color stackpanes in alternating green and white
         if (i % 2==0) {
         	if (j % 2==0) {
         		pane.setStyle("-fx-background-color: white");
@@ -55,31 +56,37 @@ public class GameController implements Initializable {
         		pane.setStyle("-fx-background-color: green");
         	}
         }  		
+				//add event handler to stackpane
         pane.setOnMouseClicked(this::handleSquareClick);
+				//add stackpane to grid square
         grid.add(pane, j, i);
       }
     }
+		//add pawn image to stackpane
 		panels[0][1].getChildren().add(new ImageView(getResource("blackPawn.png")));	
+		//add keyboard event handler to scene (TODO may not work)
 		rootbox.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent e) {
 				KeyCode code = e.getCode();
-		if (code == KeyCode.DOWN) {
-			movePawn(0, 1);
-		} else if (code == KeyCode.UP) {
-			movePawn(0,-1);
-		} else if (code == KeyCode.LEFT) {
-			movePawn(-1,0);
-		} else if (code == KeyCode.RIGHT) {
-			movePawn(1,0);
-		}
+				if (code == KeyCode.DOWN) {
+					movePawn(0, 1);
+				} else if (code == KeyCode.UP) {
+					movePawn(0,-1);
+				} else if (code == KeyCode.LEFT) {
+					movePawn(-1,0);
+				} else if (code == KeyCode.RIGHT) {
+					movePawn(1,0);
+				}
 			}
 		});
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//runs when scene is set
 		panels = new StackPane[9][9];
+		//binds grid width to grid height so grid remains a square
 		NumberBinding binding = Bindings.min(gameboxH.widthProperty(), gameboxH.heightProperty());
 		gameboxV.prefWidthProperty().bind(binding);
 		gameboxV.prefHeightProperty().bind(binding);
@@ -87,26 +94,31 @@ public class GameController implements Initializable {
 	}
 
 	protected void handleSquareClick(MouseEvent event) {
-		//get position of button
 		StackPane panel;
 		try {
+			//if image in stackpane was clicked
 			ImageView imgView = (ImageView) event.getTarget();
 			panel = (StackPane) imgView.getParent();
 		}
 		catch (Exception ex) {
+			//otherwsie the stackpane itself was clicked
 			panel = (StackPane) event.getTarget();
 		}
+		//get stackpane coords from grid
 		int[] position = {GridPane.getRowIndex(panel),GridPane.getColumnIndex(panel)};
 		panels[position[0]][position[1]].getChildren().clear();
+		//add iamge to stackpane
 		panels[position[0]][position[1]].getChildren().add(new ImageView(getResource("blackPawn.png")));
 	}
 
 	private Image getResource(String url) {
+		//retrieves an image from the images folder by name
 		Image piece = new Image(getClass().getResource("images/"+url).toExternalForm());
 		return piece;
 	}
 
 	private void movePawn(int i, int j) {
+		//moves pawn image in the grid by the offsets provided
 		panels[along][up].getChildren().clear();
 		along += i;
 		up += j;

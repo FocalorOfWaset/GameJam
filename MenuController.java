@@ -12,10 +12,10 @@ public class MenuController {
 	}
 	
 	@FXML protected void handleSettingsBtn(ActionEvent event) {
-		Main.OpenWindow(350,"settings.fxml",(Stage)exitBtn.getScene().getWindow());
+		Main.ChangeScene(350,"settings.fxml");
 	}
 
 	@FXML protected void handlePlayBtn(ActionEvent event) {
-		Main.OpenWindow(700,"game.fxml",(Stage)exitBtn.getScene().getWindow());
+		Main.ChangeScene(700,"game.fxml");
 	}
 }

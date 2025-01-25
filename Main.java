@@ -8,60 +8,45 @@ import javafx.scene.image.Image;
 
 public class Main extends Application {
 	//Entry point !!!!
+
+	private static Stage window;
+
 	@Override
 	public void start(Stage primaryStage) {
-			OpenWindow(350,"menu.fxml",null);
-			OpenPopup("popups working");
+		//creates window
+			window = new Stage();
+			window.getIcons().add(new Image(Main.class.getResource("images/blackPawn.png").toExternalForm()));
+			window.setTitle("Game Name");
+			window.setResizable(true);
+			window.show();
+			//opens scene
+			ChangeScene(350,"menu.fxml");
 	}
 	
 	//launches the JavaFX application
 	public static void main(String[] args) {
 		launch(args);
 	}
-	//TODO change scenes instead of opening and closing stages
-	/**Opens a square window of width 'size' */
-	public static void OpenWindow(int size, String fxml) {
-		OpenWindow(size,size,fxml,null);
+
+	/**Changes to scene to square scene from fxml source with width 'size'.  */
+	public static void ChangeScene(int size, String fxml) {
+		ChangeScene(size,size,fxml);
 	}
 
-	/**Opens a square window of width 'size', and closes the window passed in */
-	public static void OpenWindow(int size, String fxml, Stage stage) {
-		OpenWindow(size,size,fxml,stage);
-	}
-
-	/**Opens a square window of width and height as specified */
-	public static void OpenWindow(int width, int height, String fxml) {
-		OpenWindow(width,height,fxml,null);
-	}
-
-	/**Opens a square window of width and height as specified, and closes the window passed in */
-  public static void OpenWindow(int width, int height, String fxml, Stage stage) {
-		//creates a new stage
-		Stage window = new Stage();
+	/**hanges to scene to square scene from fxml source with width and height as specified.*/
+  public static void ChangeScene(int width, int height, String fxml) {
 		try {
+			window.hide();
 			//retrieves fxml template from views folder
 			String path = "views/" + fxml;
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     
 			Parent root = (Parent)fxmlLoader.load();
 			//creates scene from fxml with specified dimensions   
 			Scene scene = new Scene(root,width,height);
-			window.setTitle("Game Name");			
 			window.setScene(scene);
-			window.getIcons().add(new Image(Main.class.getResource("images/blackPawn.png").toExternalForm()));
-			window.setResizable(true);
 			window.show();
-			//closes window provided
-			if(stage!=null) {
-				stage.close();
-			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**Opens a small popup window containing the method */
-	public static void OpenPopup(String message) {
-		MessageController.displayText = message;
-		OpenWindow(200,150,"message.fxml",null);
 	}
 }
