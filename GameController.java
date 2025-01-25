@@ -65,20 +65,17 @@ public class GameController implements Initializable {
 		//add pawn image to stackpane
 		panels[0][1].getChildren().add(new ImageView(getResource("blackPawn.png")));	
 		//add keyboard event handler to scene (TODO may not work)
-		rootbox.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent e) {
+		rootbox.getScene().setOnKeyPressed(e -> { 
 				KeyCode code = e.getCode();
-				if (code == KeyCode.DOWN) {
+				if (code == KeyCode.D) {
 					movePawn(0, 1);
-				} else if (code == KeyCode.UP) {
+				} else if (code == KeyCode.A) {
 					movePawn(0,-1);
-				} else if (code == KeyCode.LEFT) {
+				} else if (code == KeyCode.W) {
 					movePawn(-1,0);
-				} else if (code == KeyCode.RIGHT) {
+				} else if (code == KeyCode.S) {
 					movePawn(1,0);
 				}
-			}
 		});
 	}
 
