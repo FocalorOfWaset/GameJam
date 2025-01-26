@@ -27,12 +27,12 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	/**Changes to scene to square scene from fxml source with width 'size'.  */
+	/**Changes scene to square scene from fxml source with width 'size'.  */
 	public static void ChangeScene(int size, String fxml) {
 		ChangeScene(size,size,fxml);
 	}
 
-	/**Changes to scene to square scene from fxml source with width and height as specified.*/
+	/**Changes to scene from fxml source with width and height as specified.*/
   public static void ChangeScene(int width, int height, String fxml) {
 		try {
 			window.hide();
@@ -40,6 +40,31 @@ public class Main extends Application {
 			String path = "views/" + fxml;
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     
 			Parent root = (Parent)fxmlLoader.load();
+			//creates scene from fxml with specified dimensions   
+			Scene scene = new Scene(root,width,height);
+			window.setScene(scene);
+			window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**Changes scene to square scene showing the level provided.*/
+	public static void ShowLevel(int size, Level level) {
+		ShowLevel(size, size, level);
+	}
+
+	/**Changes scene showing the level provided with width and height as specified.*/
+	public static void ShowLevel(int width, int height , Level level) {
+		try {
+			window.hide();
+			//retrieves fxml template from views folder
+			String path = "views/game.fxml";
+			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     
+			Parent root = (Parent)fxmlLoader.load();
+			//sets level attribute of controller
+			GameController gc = fxmlLoader.getController();
+			gc.setLevel(level);
 			//creates scene from fxml with specified dimensions   
 			Scene scene = new Scene(root,width,height);
 			window.setScene(scene);

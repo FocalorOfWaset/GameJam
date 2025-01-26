@@ -17,10 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.animation.AnimationTimer;
 
-/**Handles the screen while a level is underway.
- * Currently has example methods that showcase a grid, adding images to the grid, handling clicks and keystrokes,
- * and the animation timer.
- */
+/**Handles the screen while a level is underway.*/
 public class GameController implements Initializable {
 	@FXML private Button exit;
 	@FXML private Button start;
@@ -99,8 +96,11 @@ public class GameController implements Initializable {
 		gameboxV.prefWidthProperty().bind(binding);
 		gameboxV.prefHeightProperty().bind(binding);
 		gameboxV.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
-		this.time = 0;
-		this.level = new Level(this);	
+		this.time = 0;	
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 
 	private Image getResource(String url) {
