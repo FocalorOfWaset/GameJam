@@ -1,3 +1,4 @@
+
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.beans.binding.NumberBinding;
@@ -11,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -31,9 +31,8 @@ public class GameController implements Initializable {
 	//keeps track of grid of panes 
 	private StackPane panels[][];
 	private AnimationTimer timer;
-	private int along = 0;
-	private int up = 1;
-	private int time = 0;
+	private int time;
+	private Level level;
 	
 	@FXML protected void handleExitBtn(ActionEvent event) {
 		timer.stop();
@@ -41,9 +40,12 @@ public class GameController implements Initializable {
 	}
 
 	@FXML protected void handleStartBtn(ActionEvent event) {
+		//TODO vary grid size based on level data
+		int width = 8;
+		int height = 8;
 		grid.getChildren().clear();
-    for (int i=0;i<8;i++) {
-      for(int j=0;j<8;j++) {
+    for (int i=0;i<width;i++) {
+      for(int j=0;j<height;j++) {
 				//creates stackpanes
         StackPane pane = new StackPane();
         panels[i][j] = pane;
@@ -61,8 +63,6 @@ public class GameController implements Initializable {
         		pane.setStyle("-fx-background-color: green");
         	}
         }  		
-				//add event handler to stackpane
-        pane.setOnMouseClicked(this::handleSquareClick);
 				//add stackpane to grid square
         grid.add(pane, j, i);
       }
@@ -71,26 +71,19 @@ public class GameController implements Initializable {
 		panels[0][1].getChildren().add(new ImageView(getResource("blackPawn.png")));	
 		//add keyboard event handler to scene 
 		rootbox.getScene().setOnKeyPressed(e -> { 
-				KeyCode code = e.getCode();
-				if (code == KeyCode.D) {
-					movePawn(0, 1);
-				} else if (code == KeyCode.A) {
-					movePawn(0,-1);
-				} else if (code == KeyCode.W) {
-					movePawn(-1,0);
-				} else if (code == KeyCode.S) {
-					movePawn(1,0);
+				switch(e.getCode()) {
+					case KeyCode.W: this.level.logKey(Direction.N);
+					case KeyCode.A: this.level.logKey(Direction.E);
+					case KeyCode.S: this.level.logKey(Direction.S);
+					case KeyCode.D: this.level.logKey(Direction.W);
+					default: ;
 				}
 		});
 		//create animation timer
 		timer = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
-				if ((time % 60) % 2 == 0) {
-					movePawn(1,0);
-				} else {
-					movePawn(-1, 0);
-				}
+				level.queryEntities(time);
 				time = (time + 1) % 60;
 			}
 		};
@@ -105,25 +98,9 @@ public class GameController implements Initializable {
 		NumberBinding binding = Bindings.min(gameboxH.widthProperty(), gameboxH.heightProperty());
 		gameboxV.prefWidthProperty().bind(binding);
 		gameboxV.prefHeightProperty().bind(binding);
-		gameboxV.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);	
-	}
-
-	protected void handleSquareClick(MouseEvent event) {
-		StackPane panel;
-		try {
-			//if image in stackpane was clicked
-			ImageView imgView = (ImageView) event.getTarget();
-			panel = (StackPane) imgView.getParent();
-		}
-		catch (Exception ex) {
-			//otherwsie the stackpane itself was clicked
-			panel = (StackPane) event.getTarget();
-		}
-		//get stackpane coords from grid
-		int[] position = {GridPane.getRowIndex(panel),GridPane.getColumnIndex(panel)};
-		panels[position[0]][position[1]].getChildren().clear();
-		//add iamge to stackpane
-		panels[position[0]][position[1]].getChildren().add(new ImageView(getResource("blackPawn.png")));
+		gameboxV.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
+		this.time = 0;
+		this.level = new Level(this);	
 	}
 
 	private Image getResource(String url) {
@@ -132,11 +109,7 @@ public class GameController implements Initializable {
 		return piece;
 	}
 
-	private void movePawn(int i, int j) {
-		//moves pawn image in the grid by the offsets provided
-		panels[along][up].getChildren().clear();
-		along += i;
-		up += j;
-		panels[along][up].getChildren().add(new ImageView(getResource("blackPawn.png")));
+	public void updateBoard() {
+		//will need to be passed location data somehow
 	}
 }

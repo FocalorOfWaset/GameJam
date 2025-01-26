@@ -1,3 +1,4 @@
+
 /**Represents a game piece that is queried each pass of the gameloop */
 public abstract class Entity extends Gamepiece {
 
