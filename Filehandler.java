@@ -1,6 +1,6 @@
 
 /**For writing and reading of levels to files */
-public class Filehandler {
+public class FileHandler {
   
   /**Deserialises a level from the file with name provided */
   public Level readLevel(String name) {

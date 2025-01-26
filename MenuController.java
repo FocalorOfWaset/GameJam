@@ -17,6 +17,6 @@ public class MenuController {
 	}
 
 	@FXML protected void handlePlayBtn(ActionEvent event) {
-		Main.ChangeScene(700,"game.fxml");
+		Main.ChangeScene(350,"levels.fxml");
 	}
 }

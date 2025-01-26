@@ -10,6 +10,14 @@ public class Level {
   public boolean moved;
   private GameController ui;
 
+  public Level(Scenery[][] scenery, List<Entity> entities) {
+    this.scenery = scenery;
+    this.entities = entities;
+    this.sceneryAltered = true;
+    this.d = Direction.N;
+    this.moved = true;
+  }
+
   public void setUI(GameController ui) {
     this.ui = ui;
   }
