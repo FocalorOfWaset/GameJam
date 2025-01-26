@@ -1,6 +1,5 @@
 
 import java.util.List;
-import java.util.ArrayList;
 /**Stores information on a level including scenery and entities */
 public class Level {
   public Scenery[][] scenery;

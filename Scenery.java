@@ -18,14 +18,15 @@ public class Scenery extends Gamepiece {
     this.image = this.constructResourceName(northWall, eastWall,southWall, westWall);
   }
   /**Constructor with coorinates provided seperately */
-  public Scenery(int x, int y, String resource, boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
-    super(x, y, resource);
+  public Scenery(int x, int y,  boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
+    super(x, y, "");
     //create enum map of walls
     this.walls = new EnumMap<>(Direction.class);
     this.walls.put(Direction.N, northWall);
     this.walls.put(Direction.E, eastWall);
     this.walls.put(Direction.S, southWall);
     this.walls.put(Direction.W, westWall);
+    this.image = this.constructResourceName(northWall, eastWall,southWall, westWall);
   }
 
   /**Sets whether a wall is in a specific direction */
