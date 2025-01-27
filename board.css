@@ -1,48 +1,60 @@
+
+
 .button {	
     -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "Tiny5";
+	-fx-font-size: 40px;
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-color: linear-gradient(#ffba0c, #b16200);
+	-fx-image-rendering: pixelated;
+	-fx-border-color: rgb(98, 51, 9) ;
+    -fx-border-width: 5 ; 
+    -fx-border-style: segments(5, 2, 5, 2) ;
 }
 .button:hover {
 	-fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
 #backBtn {
 	-fx-background-color: linear-gradient(#c94122, #613228);
+	-fx-border-color: rgb(98, 51, 9) ;
+    -fx-border-width: 5 ; 
+    -fx-border-style: segments(5, 2, 5, 2) ;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 #backBtn:hover {
 	-fx-background-color: linear-gradient(#613228, #c94122);
 }
 #checklbl {
-	-fx-font-family: "Arial Narrow";
+	-fx-font-family: "Tiny5";
 	-fx-font-weight: bold;
 	-fx-fill: FIREBRICK;
-	-fx-font-size:20px;
+	-fx-border-color: rgb(98, 51, 9) ;
+    -fx-border-width: 5 ; 
+    -fx-border-style: segments(5, 2, 5, 2) ;
+	-fx-font-size:40px;
 }
 #title {
-	-fx-font-family: "Papyrus";
+	-fx-font-family: "Tiny5";
 	-fx-font-weight: bold;
-	-fx-font-size: 30px;
+	-fx-font-size: 70px;
 }
 #timer {
-	-fx-font-family: "Papyrus";
+	-fx-font-family: "Tiny5";
 	-fx-font-weight: bold;
-	-fx-font-size: 20px;
+	-fx-font-size: 24px;
 }
 #message {
-	-fx-font-family: "Papyrus";
-	-fx-font-size: 15px;
+	-fx-font-family: "Tiny5";
+	-fx-font-size: 18px;
 }
 #smalltitle {
-	-fx-font-family: "Papyrus";
+	-fx-font-family: "Tiny5";
 	-fx-font-weight: bold;
-	-fx-font-size: 15px;
+	-fx-font-size: 18px;
 }
 #error {
-	-fx-font-family: "Gabriola";
+	-fx-font-family: "Tiny5";
 	-fx-font-weight: bold;
-	-fx-font-size: 25px;
+	-fx-font-size: 24px;
 	-fx-fill: FIREBRICK;
 }

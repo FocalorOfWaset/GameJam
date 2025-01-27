@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitMenuController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitMenuController">
 	<children>
 		<Text id="title" >Chess</Text>
-		<Button onAction="#handleLoginBtn" prefWidth="120.0">Login</Button>
-		<Button onAction="#handleSignupBtn" prefWidth="120.0">Create Account</Button>
-		<Button onAction="#handleGuestBtn" prefWidth="120.0" >Continue as Guest</Button>
-		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="120.0">Close</Button>
+		<Button onAction="#handleLoginBtn" prefWidth="400.0" prefHeight="80.0">Login</Button>
+		<Button onAction="#handleSignupBtn" prefWidth="400.0" prefHeight="80.0">Create Account</Button>
+		<Button onAction="#handleGuestBtn" prefWidth="400.0" prefHeight="80.0" >Continue as Guest</Button>
+		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="300.0" prefHeight="80.0">Close</Button>
 	</children>
 	<padding>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
