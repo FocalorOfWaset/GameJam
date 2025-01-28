@@ -3,12 +3,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.beans.binding.NumberBinding;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.layout.VBox;
@@ -122,13 +125,67 @@ public class GameController implements Initializable {
 		return piece;
 	}
 
+	private void removeImage(int x, int y) {
+		//TODO implement maybe by keeping track of order of images in piece/level/gamecontroller
+	}
+
+	/**Adds image with name imgName  to the StackPane at row,col*/
+	//TODO allow specifying of position in image stack
+	private void addImage(int row, int col, String imgName, PieceType type, boolean bottom, boolean preserve) {
+		StackPane panel = panels[row][col];
+		//place scenery as the bootom image
+		ImageView view = new ImageView(getResource("images/" + imgName + ".png"));
+		//scenery always goes at the bottom
+		if (type == PieceType.SCENERY) bottom = true;
+		//clear existing images
+		if (!preserve) panel.getChildren().clear();
+		if (bottom) {
+			if (type == PieceType.ENTITY) {
+				//place entity one above the scenery
+				panel.getChildren().add(1, view); 
+			} else if (type == PieceType.SCENERY) {
+				//preserve the entities that lie above the scenery
+				ObservableList<Node> children = FXCollections.observableArrayList();
+				FXCollections.copy(children, panel.getChildren());
+				panel.getChildren().clear(); 
+				panel.getChildren().add(view);
+				for (int i = 1; i < children.size();i++) {
+					panel.getChildren().add(children.get(i));
+				}
+			}
+		} else {
+			//put image on top
+			panel.getChildren().add(view);
+		}
+  }
+
 	/**For first time loading scenery from level */
 	public void loadScenery() {
-
+		//load on scenery images
+		for (int row = 0; row<this.level.getHeight();row++) {
+			for (int col = 0; col<this.level.getWidth();col++) {
+				Scenery scene = this.level.scenery[row][col];
+				addImage(row, col, scene.getImage(), scene.type(), true, false);
+			}
+		} 
+		//overlay entity images
+		for (Entity ent : this.level.entities) {
+			addImage(ent.getY(), ent.getX(), ent.getImage(), ent.type(), false, false);
+		}
 	}
 
 	/**Updates positions and images of altered game pieces */
-	public void updateBoard(List<UpdateSqare> coords) {
-		
+	public void updateBoard(List<UpdateSquare> coords) {
+		for(UpdateSquare update:coords) {
+			if (update.piece instanceof Scenery) {
+				addImage(update.y, update.x, update.piece.getImage(), update.piece.type(), true, true);
+			} else if (update.piece instanceof Entity) {
+				if (update.x == -1) {
+					//remove piece
+					removeImage(update.y, update.x);
+				}
+				addImage(update.y, update.x, update.piece.getImage(), update.piece.type(), update.bottom, true);
+			}
+		}
 	}
 }

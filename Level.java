@@ -7,7 +7,7 @@ public class Level {
   public List<Entity> entities;
   public Direction d;
   public boolean moved;
-  public List<UpdateSqare> updates;
+  public List<UpdateSquare> updates;
   private GameController ui;
 
   public Level(Scenery[][] scenery, List<Entity> entities) {
