@@ -4,11 +4,12 @@ import java.util.EnumMap;
 /**Represents a game piece that is not queried each pass of the gameloop, but restricts movement. */
 public class Scenery extends Gamepiece {
   //each direction is mapped to a TRUE/FALSE whether that side is exitable
+  //TODO add scenery set name (to subfolder of images that cotnains 0001 etc images of a certain style)
   private Map<Direction, Boolean> walls;
 
   /**Constructor with coordinates provided as array */
   public Scenery(int[] coords, boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
-    super(coords, "");
+    super(coords, "", PieceType.SCENERY);
     //create enum map of walls
     this.walls = new EnumMap<>(Direction.class);
     this.walls.put(Direction.N, northWall);
@@ -19,7 +20,7 @@ public class Scenery extends Gamepiece {
   }
   /**Constructor with coorinates provided seperately */
   public Scenery(int x, int y,  boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
-    super(x, y, "");
+    super(x, y, "", PieceType.SCENERY);
     //create enum map of walls
     this.walls = new EnumMap<>(Direction.class);
     this.walls.put(Direction.N, northWall);

@@ -41,7 +41,7 @@ public class FileHandler {
 
   /**Serialises the level provided into a file with the name provided. */
   public void writeLevel(Level level, String name) {
-
+    //TODO implement for saving (low priority)
   }
 
   private Scenery stringToScenery(String serial, int x, int y) {

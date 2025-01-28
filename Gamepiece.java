@@ -5,17 +5,20 @@ public class Gamepiece {
   protected int[] coords;
   //string of URL for piece's image
   protected String image;
+  protected PieceType type;
 
   /**Constructor with coordinates provided as array */
-  public Gamepiece(int[] coords, String resource) {
+  public Gamepiece(int[] coords, String resource, PieceType type) {
     this.coords = coords;
     this.image = resource;
+    this.type = type;
   }
   /**Constructor with coordinates provided seperately */
-  public Gamepiece(int x, int y, String resource) {
+  public Gamepiece(int x, int y, String resource, PieceType type) {
     int[] coordinates = {x,y};
     this.coords = coordinates;
     this.image = resource;
+    this.type = type;
   }
   /**Returns URl of image associated with object */
   public String getImage() {
@@ -37,5 +40,9 @@ public class Gamepiece {
   public void move(int x, int y) {
     coords[0] += x;
     coords[1] += y;
+  }
+
+  public PieceType type() {
+    return this.type;
   }
 }
