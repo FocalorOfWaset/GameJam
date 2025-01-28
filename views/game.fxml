@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Region?>
+
+
+<VBox fx:id="root" alignment="CENTER" spacing="2.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
+	<children>
+	<VBox fx:id="rootbox" alignment="CENTER" spacing="0.0" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+		<HBox fx:id="gameboxH" alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+			<children>
+			<VBox fx:id="gameboxV" fillWidth="true" alignment="CENTER" >
+				<GridPane fx:id="grid" VBox.vgrow="ALWAYS" minWidth="150" minHeight="150">	
+					<columnConstraints>
+          				<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60" />
+          				<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+            			<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+           				<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+           			 	<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+           				<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+            			<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+            			<ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" minWidth="60"/>
+        			</columnConstraints>
+        			<rowConstraints>
+          				<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+         				<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+          				<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+            			<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+            			<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+            			<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+            			<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+            			<RowConstraints prefHeight="100.0" vgrow="SOMETIMES" minHeight="60"/>
+        			</rowConstraints>				
+				</GridPane>
+			</VBox>
+			</children>
+		</HBox>
+	</VBox>
+		<Button fx:id="start" onAction="#handleStartBtn" text="Start"/>
+		<Button fx:id="exit" id="backBtn" onAction="#handleExitBtn" text="Exit" />
+	</children>
+	<padding>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+   </padding>
+   <stylesheets>
+   		<URL value="@board.css" />
+   </stylesheets>
+</VBox>

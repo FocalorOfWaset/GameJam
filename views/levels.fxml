@@ -15,6 +15,12 @@
 		<Button onAction="#handleSignupBtn" prefWidth="400.0" prefHeight="80.0">Create Account</Button>
 		<Button onAction="#handleGuestBtn" prefWidth="400.0" prefHeight="80.0" >Continue as Guest</Button>
 		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="300.0" prefHeight="80.0">Close</Button>
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LevelsController">
+	<children>
+		<Text id="title">Pick a Level</Text>
+		<Button onAction="#handleLevel1" prefWidth="120.0">Level 1</Button>
+		<Button onAction="#handleLevel2" prefWidth="120.0">Level 2</Button>
+		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="120.0">Close</Button>
 	</children>
 	<padding>
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

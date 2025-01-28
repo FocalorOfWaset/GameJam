@@ -1,5 +1,6 @@
 
 
+/*TODO make the styling all pixelly and stuff*/
 .button {	
     -fx-text-fill: white;
     -fx-font-family: "Tiny5";
@@ -20,6 +21,7 @@
     -fx-border-width: 5 ; 
     -fx-border-style: segments(5, 2, 5, 2) ;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 #backBtn:hover {
 	-fx-background-color: linear-gradient(#613228, #c94122);
