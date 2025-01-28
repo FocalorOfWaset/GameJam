@@ -34,4 +34,12 @@ public class Level {
     }
     this.ui.updateBoard();
   }
+
+  public int getWidth() {
+    return this.scenery[0].length;
+  }
+
+  public int getHeight() {
+    return this.scenery.length;
+  }
 }

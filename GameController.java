@@ -6,11 +6,16 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,31 +42,30 @@ public class GameController implements Initializable {
 	}
 
 	@FXML protected void handleStartBtn(ActionEvent event) {
-		//TODO vary grid size based on level data
-		int width = 8;
-		int height = 8;
+		int width = this.level.getWidth();
+		int height = this.level.getHeight();
 		grid.getChildren().clear();
-    for (int i=0;i<width;i++) {
-      for(int j=0;j<height;j++) {
+    for (int row=0;row<height;row++) {
+      for(int col=0;col<width;col++) {
 				//creates stackpanes
         StackPane pane = new StackPane();
-        panels[i][j] = pane;
+        panels[row][col] = pane;
 				//color stackpanes in alternating green and white
-        if (i % 2==0) {
-        	if (j % 2==0) {
+        if (row % 2==0) {
+        	if (col % 2==0) {
         		pane.setStyle("-fx-background-color: white");
         	} else {
         		pane.setStyle("-fx-background-color: green");
         	}
         } else {
-        	if (j % 2!=0) {
+        	if (col % 2!=0) {
         		pane.setStyle("-fx-background-color: white");
         	} else {
         		pane.setStyle("-fx-background-color: green");
         	}
         }  		
 				//add stackpane to grid square
-        grid.add(pane, j, i);
+        grid.add(pane, col, row);
       }
     }
 		//add pawn image to stackpane
@@ -90,7 +94,6 @@ public class GameController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//runs when scene is set
-		panels = new StackPane[9][9];
 		//binds grid width to grid height so grid remains a square
 		NumberBinding binding = Bindings.min(gameboxH.widthProperty(), gameboxH.heightProperty());
 		gameboxV.prefWidthProperty().bind(binding);
@@ -101,6 +104,15 @@ public class GameController implements Initializable {
 
 	public void setLevel(Level level) {
 		this.level = level;
+		panels = new StackPane[this.level.getHeight()][this.level.getWidth()];
+		//add column and row constraints
+		GridPane.clearConstraints(this.grid);
+		for (int col = 0; col < this.level.getWidth(); col++) {
+			this.grid.getColumnConstraints().add(new ColumnConstraints(60, 100, 100, Priority.SOMETIMES, HPos.CENTER, true));
+		}
+		for (int row = 0; row < this.level.getHeight(); row++) {
+			this.grid.getRowConstraints().add(new RowConstraints(60, 100, 100, Priority.SOMETIMES, VPos.CENTER, true));
+		}
 	}
 
 	private Image getResource(String url) {
