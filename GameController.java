@@ -1,4 +1,5 @@
 
+import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.beans.binding.NumberBinding;
@@ -68,8 +69,8 @@ public class GameController implements Initializable {
         grid.add(pane, col, row);
       }
     }
-		//add pawn image to stackpane
-		panels[0][1].getChildren().add(new ImageView(getResource("blackPawn.png")));	
+		//load in scenery
+		this.loadScenery();
 		//add keyboard event handler to scene 
 		rootbox.getScene().setOnKeyPressed(e -> { 
 				switch(e.getCode()) {
@@ -121,7 +122,13 @@ public class GameController implements Initializable {
 		return piece;
 	}
 
-	public void updateBoard() {
-		//will need to be passed location data somehow
+	/**For first time loading scenery from level */
+	public void loadScenery() {
+
+	}
+
+	/**Updates positions and images of altered game pieces */
+	public void updateBoard(List<UpdateSqare> coords) {
+		
 	}
 }

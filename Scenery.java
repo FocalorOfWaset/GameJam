@@ -8,7 +8,7 @@ public class Scenery extends Gamepiece {
 
   /**Constructor with coordinates provided as array */
   public Scenery(int[] coords, boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
-    super(coords, "");
+    super(coords, "", PieceType.SCENERY);
     //create enum map of walls
     this.walls = new EnumMap<>(Direction.class);
     this.walls.put(Direction.N, northWall);
@@ -19,7 +19,7 @@ public class Scenery extends Gamepiece {
   }
   /**Constructor with coorinates provided seperately */
   public Scenery(int x, int y,  boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
-    super(x, y, "");
+    super(x, y, "", PieceType.SCENERY);
     //create enum map of walls
     this.walls = new EnumMap<>(Direction.class);
     this.walls.put(Direction.N, northWall);
