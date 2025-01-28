@@ -2,8 +2,10 @@
 import java.util.ArrayList;
 import java.util.List;
 /**Stores information on a level including scenery and entities */
+//TODO add support for multiple layers
 public class Level {
   public Scenery[][] scenery;
+  //TODO make into map of coords to objects
   public List<Entity> entities;
   public Direction d;
   public boolean moved;

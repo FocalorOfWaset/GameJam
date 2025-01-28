@@ -27,6 +27,8 @@ import javafx.scene.input.KeyCode;
 import javafx.animation.AnimationTimer;
 
 /**Handles the screen while a level is underway.*/
+//TODO add support for multiple layers
+//TODO add support for inventory displaying
 public class GameController implements Initializable {
 	@FXML private Button exit;
 	@FXML private Button start;
