@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class Main extends Application {
 	private static Stage window;
@@ -39,22 +38,11 @@ public class Main extends Application {
 			window.hide();
 			//retrieves fxml template from views folder
 			String path = "views/" + fxml;
-			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     
-			Parent root = (Parent)fxmlLoader.load();   
-			Scene scene = new Scene(root,sizex,sizey);
-			boardStage.setTitle("Chess");
-			scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Tiny5&display=swap%5C");			
-			boardStage.setScene(scene);
-			boardStage.getIcons().add(new Image(Main.class.getResource("images/blackPawn.png").toExternalForm()));
-			boardStage.setResizable(true);
-			boardStage.show();
-			//closes stage if provided
-			if(stage!=null) {
-				stage.close();
-			}
+			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     		
 			Parent root = (Parent)fxmlLoader.load();
 			//creates scene from fxml with specified dimensions   
 			Scene scene = new Scene(root,width,height);
+			scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Tiny5&display=swap%5C");	
 			window.setScene(scene);
 			window.show();
 		} catch(Exception e) {
