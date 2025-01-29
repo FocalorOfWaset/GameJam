@@ -8,13 +8,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitMenuController">
-	<children>
-		<Text id="title" >Chess</Text>
-		<Button onAction="#handleLoginBtn" prefWidth="400.0" prefHeight="80.0">Login</Button>
-		<Button onAction="#handleSignupBtn" prefWidth="400.0" prefHeight="80.0">Create Account</Button>
-		<Button onAction="#handleGuestBtn" prefWidth="400.0" prefHeight="80.0" >Continue as Guest</Button>
-		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="300.0" prefHeight="80.0">Close</Button>
 <VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LevelsController">
 	<children>
 		<Text id="title">Pick a Level</Text>
