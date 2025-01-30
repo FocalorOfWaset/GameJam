@@ -12,6 +12,16 @@ public abstract class Entity extends Gamepiece {
     super(coords, resource, PieceType.ENTITY);
   }
 
+  public void setZIndex(int index) {
+    this.zIndex = index;
+  }
+
+  @Override
+  public int getZIndex() {
+    //entities are never on the bottom layer
+    return zIndex==0?1:zIndex;
+  }
+
   /**Is queried for every entity each pass of the gameloop */
   abstract void query(Level level);
 }

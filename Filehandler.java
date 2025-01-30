@@ -9,19 +9,20 @@ public class FileHandler {
   /**Deserialises a level from the file with name provided */
   public Level readLevel(String name) {
     Level level = null;
-    String path = "levels/" + name;
+    String path = "levels/" + name + ".lvl";
     Scanner reader = null;
     try {
       InputStream in = this.getClass().getResourceAsStream(path);
       reader = new Scanner(in);
       int width = reader.nextInt();
       int height = reader.nextInt();
+      reader.nextLine();
       String sceneryStr = reader.nextLine();
       String entitiesStr = reader.nextLine();
       Scenery[][] scenery = new Scenery[height][width];
       String[] sceneryStrs = sceneryStr.split(";");
-      for (int row = 0; row < width; row++) {
-        for(int col = 0; col < height; col++) {
+      for (int row = 0; row < height; row++) {
+        for(int col = 0; col < width; col++) {
           scenery[row][col] = stringToScenery(sceneryStrs[(width*row)+col], col, row);
         }
       }
@@ -56,15 +57,16 @@ public class FileHandler {
   private Entity stringToEntity(String serial) {
     //FIXME probably ought to switch on the className on classses that definitely exist 
     //but reflection seemed fun (is definitely unneeded)
-    int x = Integer.valueOf(serial.substring(0, 1));
-    int y = Integer.valueOf(serial.substring(1, 2));
-    String className = serial.substring(2);
+    String[] serialparts = serial.split(",");
+    int x = Integer.valueOf(serialparts[0]);
+    int y = Integer.valueOf(serialparts[1]);
+    String className = serialparts[2];
     Entity entity = null;
     //will need to look up class name
     //TODO really needs proper error handling
     try {
-      Class<?> entClass = Class.forName("className");
-      Object obj = entClass.getDeclaredConstructor().newInstance(x, y, className);
+      Class<?> entClass = Class.forName(className);
+      Object obj = entClass.getDeclaredConstructor(Integer.class, Integer.class).newInstance(x, y);
       entity = (Entity)obj;
     } catch(Exception e) {
       e.printStackTrace();

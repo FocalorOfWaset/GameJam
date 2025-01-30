@@ -4,7 +4,7 @@ import java.util.EnumMap;
 /**Represents a game piece that is not queried each pass of the gameloop, but restricts movement. */
 public class Scenery extends Gamepiece {
   //each direction is mapped to a TRUE/FALSE whether that side is exitable
-  //TODO add scenery set name (to subfolder of images that cotnains 0001 etc images of a certain style)
+  //TODO add scenery set name (to subfolder of images that contains 0001 etc images of a certain style)
   private Map<Direction, Boolean> walls;
 
   /**Constructor with coordinates provided as array */
@@ -45,6 +45,6 @@ public class Scenery extends Gamepiece {
     String epart = e?"1":"0";
     String wpart = w?"1":"0";
     String spart = s?"1":"0";
-    return npart + epart + spart + wpart;
+    return "s" + npart + epart + spart + wpart;
   }
 }

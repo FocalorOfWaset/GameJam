@@ -1,6 +1,6 @@
 public class Pawn extends Entity {
 
-  public Pawn(int x, int y) {
+  public Pawn(Integer x, Integer y) {
       super(x, y, "blackPawn");
   }
   

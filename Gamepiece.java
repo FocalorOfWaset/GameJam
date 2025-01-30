@@ -3,6 +3,7 @@
 public class Gamepiece {
   //position of piece on grid in form [x,y]
   protected int[] coords;
+  protected int zIndex = 0;
   //string of URL for piece's image
   protected String image;
   protected PieceType type;
@@ -44,5 +45,9 @@ public class Gamepiece {
 
   public PieceType type() {
     return this.type;
+  }
+
+  public int getZIndex() {
+    return this.zIndex;
   }
 }
