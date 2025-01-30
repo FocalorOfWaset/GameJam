@@ -18,7 +18,7 @@
 		<HBox fx:id="gameboxH" alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
 			<children>
 			<VBox fx:id="gameboxV" fillWidth="true" alignment="CENTER" >
-				<GridPane fx:id="grid" VBox.vgrow="ALWAYS" minWidth="150" minHeight="150">	
+				<GridPane fx:id="grid" VBox.vgrow="ALWAYS" minWidth="150" minHeight="150" alignment="CENTER">	
 			
 				</GridPane>
 			</VBox>

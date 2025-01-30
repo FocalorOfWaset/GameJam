@@ -106,7 +106,6 @@ public class GameController implements Initializable {
 		this.time = 0;	
 	}
 
-	//TODO ensure grid is always centered in the window
 	/**Sets the level object and builds grid of width and height specified by level */
 	public void setLevel(Level level) {
 		this.level = level;
@@ -124,6 +123,7 @@ public class GameController implements Initializable {
 
 	/**retrieves an image from the images folder by name */
 	private Image getResource(String url) {
+		//TODO make 100 a constant here and in constraints
 		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 100, 100, false, false);
 		return img;
 	}
