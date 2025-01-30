@@ -1,6 +1,4 @@
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**For writing and reading of levels to files */
@@ -26,9 +24,9 @@ public class FileHandler {
           scenery[row][col] = stringToScenery(sceneryStrs[(width*row)+col], col, row);
         }
       }
-      List<Entity> entities = new ArrayList<Entity>();
+      EntityMap entities = new EntityMap();
       for (String entstr:entitiesStr.split(";")) {
-        entities.add(stringToEntity(entstr));
+        entities.addEntity(stringToEntity(entstr));
       }
       level = new Level(scenery, entities);
     } catch(Exception e) {

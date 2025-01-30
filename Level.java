@@ -3,16 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 /**Stores information on a level including scenery and entities */
 //TODO add support for multiple layers
+//TODO add getters and setters etc
 public class Level {
   public Scenery[][] scenery;
-  //TODO make into map of coords to objects
-  public List<Entity> entities;
+  public EntityMap entities;
   public Direction d;
   public boolean moved;
   public List<Gamepiece> updates;
   private GameController ui;
 
-  public Level(Scenery[][] scenery, List<Entity> entities) {
+  public Level(Scenery[][] scenery, EntityMap entities) {
     this.scenery = scenery;
     this.entities = entities;
     this.d = Direction.N;
@@ -32,8 +32,10 @@ public class Level {
   }
 
   public void queryEntities(int time) {
-    for (Entity ent:this.entities) {
-      ent.query(this);
+    for (List<Entity> ents:this.entities.getAll()) {
+      for (Entity ent : ents) {
+        ent.query(this);
+      }
     }
     this.ui.updateBoard(this.updates);
   }
@@ -44,5 +46,11 @@ public class Level {
 
   public int getHeight() {
     return this.scenery.length;
+  }
+
+  public List<Entity> getAllEntities() {
+    List<Entity> ret = new ArrayList<>();
+    this.entities.getAll().forEach(ret::addAll);
+    return ret;
   }
 }

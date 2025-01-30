@@ -149,7 +149,7 @@ public class GameController implements Initializable {
 			}
 		} 
 		//overlay entity images
-		for (Entity ent : this.level.entities) {
+		for (Entity ent : this.level.getAllEntities()) {
 			addImage(ent.getY(), ent.getX(), ent.getImage(), ent.getZIndex(), true);
 		}
 	}
