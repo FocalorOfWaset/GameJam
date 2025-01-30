@@ -13,7 +13,7 @@
     -fx-border-style: segments(5, 2, 5, 2) ;
 }
 .button:hover {
-	-fx-background-color: linear-gradient(#2A5058, #61a2b1);
+	-fx-background-color: linear-gradient(#b18208, #633701);
 }
 #backBtn {
 	-fx-background-color: linear-gradient(#c94122, #613228);
@@ -59,4 +59,9 @@
 	-fx-font-weight: bold;
 	-fx-font-size: 24px;
 	-fx-fill: FIREBRICK;
+}
+
+ #pane {
+	/*Can change this to image if want*/
+	-fx-background-color: #f9d16c;
 }

@@ -40,6 +40,7 @@ public class Main extends Application {
 			String path = "views/" + fxml;
 			FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));     		
 			Parent root = (Parent)fxmlLoader.load();
+			root.setId("pane");
 			//creates scene from fxml with specified dimensions   
 			Scene scene = new Scene(root,width,height);
 			scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Tiny5&display=swap%5C");	
