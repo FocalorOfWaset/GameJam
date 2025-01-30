@@ -12,10 +12,12 @@ public abstract class Entity extends Gamepiece {
     super(coords, resource, PieceType.ENTITY);
   }
 
+  /**Sets how high the entity is in th eimage stack */
   public void setZIndex(int index) {
     this.zIndex = index;
   }
 
+  /**Returns how high the entity is in the image stack */
   @Override
   public int getZIndex() {
     //entities are never on the bottom layer

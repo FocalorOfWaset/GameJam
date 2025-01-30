@@ -91,13 +91,14 @@ public class GameController implements Initializable {
 				time = (time + 1) % 60;
 			}
 		};
+		//start timer (gameloop)
 		timer.start();
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//runs when scene is set
-		//binds grid width to grid height so grid remains a square
+		//binds grid width to grid height so grid remains a squareish
 		NumberBinding binding = Bindings.min(gameboxH.widthProperty(), gameboxH.heightProperty());
 		gameboxV.prefWidthProperty().bind(binding);
 		gameboxV.prefHeightProperty().bind(binding);
@@ -106,6 +107,7 @@ public class GameController implements Initializable {
 	}
 
 	//TODO ensure grid is always centered in the window
+	/**Sets the level object and builds grid of width and height specified by level */
 	public void setLevel(Level level) {
 		this.level = level;
 		this.level.setUI(this);
@@ -120,26 +122,27 @@ public class GameController implements Initializable {
 		}
 	}
 
+	/**retrieves an image from the images folder by name */
 	private Image getResource(String url) {
-		//retrieves an image from the images folder by name
-		Image piece = new Image(getClass().getClassLoader().getResource("images/"+url).toExternalForm(), 100, 100, false, false);
-		return piece;
+		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 100, 100, false, false);
+		return img;
 	}
 
+	/**Removes image from the StackPane at row,col,position in stack*/
 	private void removeImage(int row, int col, int position) {
 		StackPane panel = panels[row][col];
 		panel.getChildren().remove(position);
 	}
 
-	/**Adds image with name imgName  to the StackPane at row,col*/
+	/**Adds image with name imgName  to the StackPane at row,col,position in stack*/
 	private void addImage(int row, int col, String imgName, int position, boolean preserve) {
 		StackPane panel = panels[row][col];
-		ImageView view = new ImageView(getResource(imgName + ".png"));
+		ImageView view = new ImageView(getResource(imgName));
 		if (!preserve) panel.getChildren().clear();
 		panel.getChildren().add(position, view);
   }
 
-	/**For first time loading scenery from level */
+	/**Loads scenery when the level is first opened */
 	public void loadScenery() {
 		//load on scenery images
 		for (int row = 0; row<this.level.getHeight();row++) {

@@ -3,6 +3,7 @@
 public class Gamepiece {
   //position of piece on grid in form [x,y]
   protected int[] coords;
+  //whether a piece is 'on top of' or 'below' another piece in the image stack
   protected int zIndex = 0;
   //string of URL for piece's image
   protected String image;
@@ -43,10 +44,12 @@ public class Gamepiece {
     coords[1] += y;
   }
 
+  /**Returns the type of the piece (SCENERY or ENTITY) */
   public PieceType type() {
     return this.type;
   }
 
+  /**Returns how high the piece is located in the image stack */
   public int getZIndex() {
     return this.zIndex;
   }

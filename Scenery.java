@@ -18,6 +18,7 @@ public class Scenery extends Gamepiece {
     this.walls.put(Direction.W, westWall);
     this.image = this.constructResourceName(northWall, eastWall,southWall, westWall);
   }
+
   /**Constructor with coorinates provided seperately */
   public Scenery(int x, int y,  boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
     super(x, y, "", PieceType.SCENERY);
@@ -40,6 +41,7 @@ public class Scenery extends Gamepiece {
     return this.walls.get(d);
   }
 
+  /**Constructs the resource name for the scenery tile based on the number and location fo walls */
   private String constructResourceName(boolean n, boolean e, boolean s, boolean w) {
     String npart = n?"1":"0";
     String epart = e?"1":"0";
