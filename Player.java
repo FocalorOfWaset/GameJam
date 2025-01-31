@@ -5,7 +5,7 @@ public class Player extends Entity {
     protected Item[] inventory;
 
     public Player(Integer x, Integer y) {
-        super(x, y, "blackPawn");
+        super(x, y, "player");
         inventory = new Item[10];
         //this.setZIndex(1);
     }

@@ -2,7 +2,7 @@
 public class Ghost extends Entity {
 
     public Ghost(Integer x, Integer y) {
-        super(x, y, "blackPawn");
+        super(x, y, "ghost");
         //this.setZIndex(1);
     }
 

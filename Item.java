@@ -6,7 +6,7 @@ public class Item extends Entity {
     protected int[] destCoordinates;
 
     public Item(Integer x, Integer y, int[] coordinates){
-        super(x, y, "blackPawn");
+        super(x, y, "pot");
         pickedUp = false;
         //Obviously need to change these to correct square
         destCoordinates = coordinates;
