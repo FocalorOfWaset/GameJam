@@ -11,24 +11,29 @@ public class Player extends Entity {
     }
 
     //need to change type when make object class
-    public Boolean addItem(Item item){
+    public Boolean addItem(Item item, Level level){
         for (int i=0;i<inventory.length;i++){
             if (inventory[i] == null){
                 inventory[i] = item;
                 item.pickUp();
+                level.updates.add(new Update(0, 0, i, this.type, item.getImage(), UpdateType.ADD_INV));
                 return true;
             }
         }
         return false;
     }
     //need to change type when make object class
-    public Boolean removeItem(Item item) {
+    public Boolean removeItem(Level level) {
         for (int i=0;i<inventory.length;i++){
-            if (inventory[i] == item){
+            Item item = inventory[i];
+            if (item != null) {
+            if (item.putDown(getCoords())) {
                 inventory[i] = null;
-                if (item.putDown(getCoords()))
-                    return true;
-            }
+                level.updates.add(new Update(0, 0, i, this.type, item.getImage(), UpdateType.REMOVE_INV));
+                level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex() + 1, item.type, item.getImage(), UpdateType.ADD));
+                return true;
+            } 
+        }
         }
         return false;
     }
@@ -38,7 +43,7 @@ public class Player extends Entity {
         //TODO check for walls and out of bounds
         //TODO add methods to level for adding and removing a piece from updates
       if(level.moved == false) {
-        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), true));
+        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), UpdateType.REMOVE));
         switch(level.d) {
             case N: this.move(0, -1); break;
             case S: this.move(0, 1); break;
@@ -49,16 +54,21 @@ public class Player extends Entity {
                 for(Entity e : list) {
                     if (e instanceof Item) {
                         Item item = (Item)e;
-                        item.pickUp();
-                        this.addItem(item);
-                        level.updates.add(new Update(item.getX(), item.getY(), item.getZIndex(), item.type, item.getImage(), true));
+                        if (this.addItem(item, level)) {
+                            level.updates.add(new Update(item.getX(), item.getY(), item.getZIndex(), item.type, item.getImage(), UpdateType.REMOVE));
+                        }
                     }
+                }
+                break;}
+            case PUTDOWN: {
+                if(removeItem(level)) {
+                    
                 }
                 break;
             }
         }
         level.moved = true;
-        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), false));
+        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), UpdateType.ADD));
       }
     }
   }

@@ -44,6 +44,12 @@ public class Gamepiece {
     coords[1] += y;
   }
 
+  /**Changes the coordinates to the provided values */
+  public void moveTo(int x , int y) {
+    coords[0] = x;
+    coords[1] = y;
+  }
+
   /**Returns the type of the piece (SCENERY or ENTITY) */
   public PieceType type() {
     return this.type;

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Item extends Entity {
 
     protected Boolean pickedUp;
@@ -16,8 +18,8 @@ public class Item extends Entity {
     }
 
     public Boolean putDown(int[] coordinates){
-        if (destCoordinates == coordinates){
-            move(coordinates[0], coordinates[1]);
+        if (Arrays.equals(destCoordinates,coordinates)){
+            moveTo(coordinates[0], coordinates[1]);
             return true;
         }
         return false;

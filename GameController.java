@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
@@ -29,10 +30,12 @@ import javafx.animation.AnimationTimer;
 public class GameController implements Initializable {
 	@FXML private Button exit;
 	@FXML private Button start;
+	@FXML private VBox root;
 	@FXML private VBox rootbox;
 	@FXML private HBox gameboxH;
 	@FXML private VBox gameboxV;
 	@FXML private GridPane grid;
+	private HBox inventoryBox = null;
 	//keeps track of grid of panes 
 	private StackPane panels[][];
 	private AnimationTimer timer;
@@ -73,6 +76,12 @@ public class GameController implements Initializable {
     }
 		//load in scenery
 		this.loadScenery();
+		//add inventory display in place of start button
+		int index = this.root.getChildren().indexOf(this.start);
+		this.root.getChildren().remove(this.start);
+		this.inventoryBox = new HBox();
+		this.inventoryBox.setAlignment(Pos.CENTER);
+		this.root.getChildren().add(index, this.inventoryBox);
 		//add keyboard event handler to scene 
 		//TODO change to key listeners for keystrokes or something (low priority)
 		rootbox.getScene().setOnKeyPressed(e -> { 
@@ -82,6 +91,7 @@ public class GameController implements Initializable {
 					case KeyCode.S: this.level.logKey(Direction.S); break;
 					case KeyCode.D: this.level.logKey(Direction.W); break;
 					case KeyCode.E: this.level.logKey(Direction.PICKUP); break;
+					case KeyCode.Q: this.level.logKey(Direction.PUTDOWN); break;
 					default: ;
 				}
 		});
@@ -141,7 +151,11 @@ public class GameController implements Initializable {
 		StackPane panel = panels[row][col];
 		ImageView view = new ImageView(getResource(imgName));
 		if (!preserve) panel.getChildren().clear();
-		panel.getChildren().add(position, view);
+		if (position >= panel.getChildren().size()) {
+			panel.getChildren().add(view);
+		} else {
+			panel.getChildren().add(position, view);
+		}
   }
 
 	/**Loads scenery when the level is first opened */
@@ -162,16 +176,32 @@ public class GameController implements Initializable {
 	/**Updates positions and images of altered game pieces */
 	public void updateBoard(List<Update> updates) {
 		for(Update piece:updates) {
-			if (piece.type == PieceType.SCENERY) {
-				addImage(piece.y, piece.x, piece.image, piece.zIndex, true);
-			} else if (piece.type == PieceType.ENTITY) {
-				if (piece.remove) {
-					//remove piece if coords are negative
-					removeImage(piece.y, piece.x, piece.zIndex);
-				} else {
+			if (piece.uptype == UpdateType.ADD_INV) {
+				addToInventory(piece.zIndex, piece.image);
+			} else if (piece.uptype == UpdateType.REMOVE_INV) {
+				removeFromInventory(piece.zIndex);
+			} else {
+				if (piece.type == PieceType.SCENERY) {
 					addImage(piece.y, piece.x, piece.image, piece.zIndex, true);
+				} else if (piece.type == PieceType.ENTITY) {
+					if (piece.uptype == UpdateType.REMOVE) {
+						//remove piece if coords are negative
+						removeImage(piece.y, piece.x, piece.zIndex);
+					} else {
+						addImage(piece.y, piece.x, piece.image, piece.zIndex, true);
+					}
 				}
 			}
 		}
+	}
+
+	public void addToInventory(int index, String image) {
+		if (this.inventoryBox == null) return;
+		this.inventoryBox.getChildren().add(index, new ImageView(getResource(image)));
+	}
+
+	public void removeFromInventory(int index) {
+		if (this.inventoryBox == null) return;
+		this.inventoryBox.getChildren().remove(index);
 	}
 }

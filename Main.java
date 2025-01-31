@@ -17,6 +17,7 @@ public class Main extends Application {
 			window.getIcons().add(new Image(Main.class.getResource("images/blackPawn.png").toExternalForm()));
 			window.setTitle("Game Name");
 			window.setResizable(true);
+			//window.setFullScreen(true);
 			window.show();
 			//opens scene
 			ChangeScene(350,"menu.fxml");
