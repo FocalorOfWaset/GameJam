@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.beans.binding.NumberBinding;
+import javafx.collections.ObservableList;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.layout.VBox;
@@ -101,7 +103,7 @@ public class GameController implements Initializable {
 			@Override
 			public void handle(long now) {
 				level.queryEntities(time);
-				time = (time + 1) % 60;
+				time = (time + 1) % 360;
 			}
 		};
 		//start timer (gameloop)
@@ -134,10 +136,10 @@ public class GameController implements Initializable {
 		}
 	}
 
-	/**retrieves an image from the images folder by name */
+	/**Retrieves an image from the images folder by name */
 	private Image getResource(String url) {
 		//TODO make 100 a constant here and in constraints
-		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 100, 100, false, false);
+		Image img = new Image(getClass().getClassLoader().getResource("images/" + url + ".png").toExternalForm(), 100, 100, false, false);
 		return img;
 	}
 
@@ -152,6 +154,10 @@ public class GameController implements Initializable {
 	private void addImage(int row, int col, String imgName, int position, boolean preserve) {
 		StackPane panel = panels[row][col];
 		ImageView view = new ImageView(getResource(imgName));
+		ObservableList<Node> children = panel.getChildren();
+		for (int i = 0; i < children.size(); i++) {
+
+		}
 		if (!preserve) panel.getChildren().clear();
 		if (position >= panel.getChildren().size()) {
 			panel.getChildren().add(view);

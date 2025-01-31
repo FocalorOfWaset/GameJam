@@ -72,6 +72,7 @@ public class FileHandler {
         entity = new Item(x, y, dest);
         break;
       }
+      case "Ghost": entity  = new Ghost(x,y);
       default: entity = new Pawn(x, y);
     }
     return entity;

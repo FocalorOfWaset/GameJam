@@ -77,4 +77,8 @@ public class Level {
     this.entities.getAll().forEach(ret::addAll);
     return ret;
   }
+
+  public void end() {
+    this.ui.endGame();
+  }
 }
