@@ -5,7 +5,7 @@ public class Pawn extends Entity {
   }
   
   @Override
-  void query(Level level) {
+  void query(Level level, int time) {
     
   }
   

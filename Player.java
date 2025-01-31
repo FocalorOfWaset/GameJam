@@ -40,7 +40,7 @@ public class Player extends Entity {
     }
     
     @Override
-    void query(Level level) {
+    void query(Level level, int time) {
         //TODO check for walls and out of bounds
         //TODO add methods to level for adding and removing a piece from updates
       if(level.moved == false) {

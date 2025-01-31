@@ -27,7 +27,6 @@ import javafx.animation.AnimationTimer;
 
 /**Handles the screen while a level is underway.*/
 //TODO add support for multiple layers
-//TODO add support for inventory displaying
 public class GameController implements Initializable {
 	@FXML private Button exit;
 	@FXML private Button start;
@@ -149,6 +148,7 @@ public class GameController implements Initializable {
 	}
 
 	/**Adds image with name imgName  to the StackPane at row,col,position in stack*/
+	//TODO do adding stuff with a posiiton properly
 	private void addImage(int row, int col, String imgName, int position, boolean preserve) {
 		StackPane panel = panels[row][col];
 		ImageView view = new ImageView(getResource(imgName));

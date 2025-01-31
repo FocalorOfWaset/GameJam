@@ -26,7 +26,7 @@ public class Item extends Entity {
     }
 
     @Override
-    void query(Level level) {
+    void query(Level level, int time) {
       
     }
 }

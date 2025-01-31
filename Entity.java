@@ -25,7 +25,7 @@ public abstract class Entity extends Gamepiece {
   }
 
   /**Is queried for every entity each pass of the gameloop */
-  abstract void query(Level level);
+  abstract void query(Level level, int time);
 }
 
 //TODO create stairs
