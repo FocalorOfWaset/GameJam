@@ -2,10 +2,11 @@ public class Player extends Entity {
     //players inventory - when make an object class change the type
     protected Item[] inventory;
 
-    public Player(Integer x, Integer y, Item[] inventory) {
+    public Player(Integer x, Integer y) {
         super(x, y, "blackPawn");
         inventory = new Item[10];
     }
+
     //need to change type when make object class
     public Boolean addItem(Item item){
         for (int i=0;i<inventory.length;i++){
@@ -18,7 +19,7 @@ public class Player extends Entity {
         return false;
     }
     //need to change type when make object class
-    public Boolean removeItem(Item item){
+    public Boolean removeItem(Item item) {
         for (int i=0;i<inventory.length;i++){
             if (inventory[i] == item){
                 inventory[i] = null;
@@ -31,7 +32,18 @@ public class Player extends Entity {
     
     @Override
     void query(Level level) {
-      
+        //TODO check for walls and out of bounds
+        //TODO add methods to level for adding and removing a piece from updates
+      if(level.moved == false) {
+        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), true));
+        switch(level.d) {
+            case N: this.move(0, -1); break;
+            case S: this.move(0, 1); break;
+            case E: this.move(-1, 0); break;
+            case W: this.move(1, 0); break;
+        }
+        level.moved = true;
+        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), false));
+      }
     }
-    
   }

@@ -76,10 +76,10 @@ public class GameController implements Initializable {
 		//add keyboard event handler to scene 
 		rootbox.getScene().setOnKeyPressed(e -> { 
 				switch(e.getCode()) {
-					case KeyCode.W: this.level.logKey(Direction.N);
-					case KeyCode.A: this.level.logKey(Direction.E);
-					case KeyCode.S: this.level.logKey(Direction.S);
-					case KeyCode.D: this.level.logKey(Direction.W);
+					case KeyCode.W: this.level.logKey(Direction.N); break;
+					case KeyCode.A: this.level.logKey(Direction.E); break;
+					case KeyCode.S: this.level.logKey(Direction.S); break;
+					case KeyCode.D: this.level.logKey(Direction.W); break;
 					default: ;
 				}
 		});
@@ -158,16 +158,16 @@ public class GameController implements Initializable {
 	}
 
 	/**Updates positions and images of altered game pieces */
-	public void updateBoard(List<Gamepiece> updates) {
-		for(Gamepiece piece:updates) {
-			if (piece instanceof Scenery) {
-				addImage(piece.getY(), piece.getX(), piece.getImage(), piece.getZIndex(), true);
-			} else if (piece instanceof Entity) {
-				if (piece.getX() == -1) {
+	public void updateBoard(List<Update> updates) {
+		for(Update piece:updates) {
+			if (piece.type == PieceType.SCENERY) {
+				addImage(piece.y, piece.x, piece.image, piece.zIndex, true);
+			} else if (piece.type == PieceType.ENTITY) {
+				if (piece.remove) {
 					//remove piece if coords are negative
-					removeImage(piece.getY(), piece.getX(), piece.getZIndex());
+					removeImage(piece.y, piece.x, piece.zIndex);
 				} else {
-					addImage(piece.getY(), piece.getX(), piece.getImage(), piece.getZIndex(), true);
+					addImage(piece.y, piece.x, piece.image, piece.zIndex, true);
 				}
 			}
 		}

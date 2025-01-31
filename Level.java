@@ -14,7 +14,7 @@ public class Level {
   //records whether the player peice has been moved in the above direction
   public boolean moved;
   //a list of all updated pieces
-  public List<Gamepiece> updates;
+  public List<Update> updates;
   //reference to UI
   private GameController ui;
 

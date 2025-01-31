@@ -53,21 +53,21 @@ public class FileHandler {
   }
 
   private Entity stringToEntity(String serial) {
-    //FIXME probably ought to switch on the className on classses that definitely exist 
-    //but reflection seemed fun (is definitely unneeded)
     String[] serialparts = serial.split(",");
     int x = Integer.valueOf(serialparts[0]);
     int y = Integer.valueOf(serialparts[1]);
     String className = serialparts[2];
     Entity entity = null;
     //will need to look up class name
-    //TODO really needs proper error handling
-    try {
-      Class<?> entClass = Class.forName(className);
-      Object obj = entClass.getDeclaredConstructor(Integer.class, Integer.class).newInstance(x, y);
-      entity = (Entity)obj;
-    } catch(Exception e) {
-      e.printStackTrace();
+    //TODO use enum not classname
+    switch (className) {
+      case "Player": entity = new Player(x, y); break;
+      case "Item":{
+        int[] dest = {Integer.valueOf(serialparts[3]), Integer.valueOf(serialparts[4])};
+        entity = new Item(x, y, dest);
+        break;
+      }
+      default: entity = new Pawn(x, y);
     }
     return entity;
   }
