@@ -31,6 +31,7 @@ public class Player extends Entity {
                 inventory[i] = null;
                 level.updates.add(new Update(0, 0, i, this.type, item.getImage(), UpdateType.REMOVE_INV));
                 level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex() + 1, item.type, item.getImage(), UpdateType.ADD));
+                level.numItems--;
                 return true;
             } 
         }

@@ -17,14 +17,17 @@ public class Level {
   public List<Update> updates;
   //reference to UI
   private GameController ui;
+  //number of items until the game is won
+  public int numItems;
 
   /**Constructs Level object with scenery and entities provided */
-  public Level(Scenery[][] scenery, EntityMap entities) {
+  public Level(Scenery[][] scenery, EntityMap entities, int num) {
     this.scenery = scenery;
     this.entities = entities;
     this.d = Direction.N;
     this.moved = true;
     this.updates = new ArrayList<>();
+    this.numItems = num;
   }
 
   /**Sets reference to the user interface */
@@ -52,6 +55,10 @@ public class Level {
     }
     //displays updates
     this.ui.updateBoard(this.updates);
+    if(this.numItems == 0) {
+      //win game
+      this.ui.endGame();
+    } 
   }
 
   /**Returns width of grid of scenery */

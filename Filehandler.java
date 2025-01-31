@@ -24,11 +24,16 @@ public class FileHandler {
           scenery[row][col] = stringToScenery(sceneryStrs[(width*row)+col], col, row);
         }
       }
+      int numItems = 0;
       EntityMap entities = new EntityMap();
       for (String entstr:entitiesStr.split(";")) {
-        entities.addEntity(stringToEntity(entstr));
+        Entity ent = stringToEntity(entstr);
+        if (ent instanceof Item) {
+          numItems++;
+        }
+        entities.addEntity(ent);
       }
-      level = new Level(scenery, entities);
+      level = new Level(scenery, entities, numItems);
     } catch(Exception e) {
       //TODO add actual error handling
       e.printStackTrace();

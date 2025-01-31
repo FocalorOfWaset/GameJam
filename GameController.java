@@ -13,6 +13,7 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -48,6 +49,13 @@ public class GameController implements Initializable {
 	}
 
 	@FXML protected void handleStartBtn(ActionEvent event) {
+		//add inventory display in place of start button
+		int index = this.root.getChildren().indexOf(this.start);
+		this.root.getChildren().remove(this.start);
+		this.inventoryBox = new HBox();
+		this.inventoryBox.setAlignment(Pos.CENTER);
+		this.root.getChildren().add(index, this.inventoryBox);
+		//get width and height of gridpane
 		int width = this.level.getWidth();
 		int height = this.level.getHeight();
 		grid.getChildren().clear();
@@ -76,12 +84,6 @@ public class GameController implements Initializable {
     }
 		//load in scenery
 		this.loadScenery();
-		//add inventory display in place of start button
-		int index = this.root.getChildren().indexOf(this.start);
-		this.root.getChildren().remove(this.start);
-		this.inventoryBox = new HBox();
-		this.inventoryBox.setAlignment(Pos.CENTER);
-		this.root.getChildren().add(index, this.inventoryBox);
 		//add keyboard event handler to scene 
 		//TODO change to key listeners for keystrokes or something (low priority)
 		rootbox.getScene().setOnKeyPressed(e -> { 
@@ -203,5 +205,12 @@ public class GameController implements Initializable {
 	public void removeFromInventory(int index) {
 		if (this.inventoryBox == null) return;
 		this.inventoryBox.getChildren().remove(index);
+	}
+
+	public void endGame() {
+		timer.stop();
+		int index = this.root.getChildren().indexOf(this.inventoryBox);
+		this.root.getChildren().remove(this.inventoryBox);
+		this.root.getChildren().add(index, new Text("You have won!"));
 	}
 }
