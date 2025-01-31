@@ -74,12 +74,14 @@ public class GameController implements Initializable {
 		//load in scenery
 		this.loadScenery();
 		//add keyboard event handler to scene 
+		//TODO change to key listeners for keystrokes or something 
 		rootbox.getScene().setOnKeyPressed(e -> { 
 				switch(e.getCode()) {
 					case KeyCode.W: this.level.logKey(Direction.N); break;
 					case KeyCode.A: this.level.logKey(Direction.E); break;
 					case KeyCode.S: this.level.logKey(Direction.S); break;
 					case KeyCode.D: this.level.logKey(Direction.W); break;
+					case KeyCode.E: this.level.logKey(Direction.PICKUP); break;
 					default: ;
 				}
 		});

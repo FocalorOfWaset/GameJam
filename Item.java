@@ -8,6 +8,7 @@ public class Item extends Entity {
         pickedUp = false;
         //Obviously need to change these to correct square
         destCoordinates = coordinates;
+        //this.setZIndex(2);
     }
 
     public void pickUp() {
