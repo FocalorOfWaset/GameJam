@@ -55,7 +55,7 @@ public class Level {
     }
     //displays updates
     this.ui.updateBoard(this.updates);
-    if(this.numItems == 0) {
+    if(this.numItems == 0 ) {
       //win game
       this.ui.endGame();
     } 
