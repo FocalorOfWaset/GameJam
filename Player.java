@@ -52,15 +52,16 @@ public class Player extends Entity {
             case W: this.move(1, 0); break;
             case PICKUP: {
                 List<Entity> list = level.entities.getEntity(this.getX(), this.getY());
-                for(Entity e : list) {
-                    if (e instanceof Item) {
-                        Item item = (Item)e;
-                        if (this.addItem(item, level)) {
-                            level.updates.add(new Update(item.getX(), item.getY(), item.getZIndex(), item.type, item.getImage(), UpdateType.REMOVE));
+                if (list != null){
+                    for(Entity e : list) {
+                        if (e instanceof Item) {
+                            Item item = (Item)e;
+                            if (this.addItem(item, level)) {
+                                level.updates.add(new Update(item.getX(), item.getY(), item.getZIndex(), item.type, item.getImage(), UpdateType.REMOVE));
+                            }
                         }
                     }
-                }
-                break;}
+                }break;}
             case PUTDOWN: {
                 if(removeItem(level)) {
                     

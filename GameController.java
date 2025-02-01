@@ -127,17 +127,17 @@ public class GameController implements Initializable {
 		//add column and row constraints
 		GridPane.clearConstraints(this.grid);
 		for (int col = 0; col < this.level.getWidth(); col++) {
-			this.grid.getColumnConstraints().add(new ColumnConstraints(60, 100, 100, Priority.SOMETIMES, HPos.CENTER, true));
+			this.grid.getColumnConstraints().add(new ColumnConstraints(25, 75, 75, Priority.SOMETIMES, HPos.CENTER, true));
 		}
 		for (int row = 0; row < this.level.getHeight(); row++) {
-			this.grid.getRowConstraints().add(new RowConstraints(60, 100, 100, Priority.SOMETIMES, VPos.CENTER, true));
+			this.grid.getRowConstraints().add(new RowConstraints(25, 75, 75, Priority.SOMETIMES, VPos.CENTER, true));
 		}
 	}
 
 	/**retrieves an image from the images folder by name */
 	private Image getResource(String url) {
 		//TODO make 100 a constant here and in constraints
-		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 100, 100, false, false);
+		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 75, 75, false, false);
 		return img;
 	}
 
