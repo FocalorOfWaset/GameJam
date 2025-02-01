@@ -45,7 +45,7 @@ public class Player extends Entity {
         if (isWall) {
             return;
         }
-        if (this.getY() + y < level.scenery.length && this.getX() + x < level.scenery[0].length) {
+        if (this.getY() + y < level.scenery[1].length && this.getX() + x < level.scenery[0].length) {
             square = level.scenery[this.getY()+y][this.getX()+x];
         isWall = square.isWall(oppositeDirection(d));
         if (isWall) {

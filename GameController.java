@@ -138,7 +138,7 @@ public class GameController implements Initializable {
 	private Image getResource(String url) {
 		//TODO make 100 a constant here and in constraints
 		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 75, 75, false, false);
-		Image img = new Image(getClass().getClassLoader().getResource("images/" + url + ".png").toExternalForm(), 100, 100, false, false);
+		//Image img = new Image(getClass().getClassLoader().getResource("images/" + url + ".png").toExternalForm(), 100, 100, false, false);
 		return img;
 	}
 
