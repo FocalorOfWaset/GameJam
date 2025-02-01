@@ -14,4 +14,13 @@ public class Update {
     this.image = image;
     this.uptype = uptype;
   }
+
+  public Update(Gamepiece piece, UpdateType type) {
+    this.x = piece.getX();
+    this.y = piece.getY();
+    this.zIndex = piece.getZIndex();
+    this.type = piece.type;
+    this.image = piece.getImage();
+    this.uptype = type;
+  }
 }

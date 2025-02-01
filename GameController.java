@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.beans.binding.NumberBinding;
-import javafx.collections.ObservableList;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.layout.VBox;
@@ -90,9 +88,9 @@ public class GameController implements Initializable {
 		rootbox.getScene().setOnKeyPressed(e -> { 
 				switch(e.getCode()) {
 					case KeyCode.W: this.level.logKey(Direction.N); break;
-					case KeyCode.A: this.level.logKey(Direction.E); break;
+					case KeyCode.A: this.level.logKey(Direction.W); break;
 					case KeyCode.S: this.level.logKey(Direction.S); break;
-					case KeyCode.D: this.level.logKey(Direction.W); break;
+					case KeyCode.D: this.level.logKey(Direction.E); break;
 					case KeyCode.E: this.level.logKey(Direction.PICKUP); break;
 					case KeyCode.Q: this.level.logKey(Direction.PUTDOWN); break;
 					default: ;
@@ -150,14 +148,10 @@ public class GameController implements Initializable {
 	}
 
 	/**Adds image with name imgName  to the StackPane at row,col,position in stack*/
-	//TODO do adding stuff with a posiiton properly
+	//TODO do adding stuff with a posiiton properly (later)
 	private void addImage(int row, int col, String imgName, int position, boolean preserve) {
 		StackPane panel = panels[row][col];
 		ImageView view = new ImageView(getResource(imgName));
-		ObservableList<Node> children = panel.getChildren();
-		for (int i = 0; i < children.size(); i++) {
-
-		}
 		if (!preserve) panel.getChildren().clear();
 		if (position >= panel.getChildren().size()) {
 			panel.getChildren().add(view);
