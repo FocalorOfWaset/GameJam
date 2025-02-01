@@ -88,9 +88,9 @@ public class GameController implements Initializable {
 		rootbox.getScene().setOnKeyPressed(e -> { 
 				switch(e.getCode()) {
 					case KeyCode.W: this.level.logKey(Direction.N); break;
-					case KeyCode.A: this.level.logKey(Direction.E); break;
+					case KeyCode.A: this.level.logKey(Direction.W); break;
 					case KeyCode.S: this.level.logKey(Direction.S); break;
-					case KeyCode.D: this.level.logKey(Direction.W); break;
+					case KeyCode.D: this.level.logKey(Direction.E); break;
 					case KeyCode.E: this.level.logKey(Direction.PICKUP); break;
 					case KeyCode.Q: this.level.logKey(Direction.PUTDOWN); break;
 					default: ;
@@ -101,7 +101,7 @@ public class GameController implements Initializable {
 			@Override
 			public void handle(long now) {
 				level.queryEntities(time);
-				time = (time + 1) % 60;
+				time = (time + 1) % 360;
 			}
 		};
 		//start timer (gameloop)
@@ -134,10 +134,11 @@ public class GameController implements Initializable {
 		}
 	}
 
-	/**retrieves an image from the images folder by name */
+	/**Retrieves an image from the images folder by name */
 	private Image getResource(String url) {
 		//TODO make 100 a constant here and in constraints
 		Image img = new Image(getClass().getClassLoader().getResource("images/"+url + ".png").toExternalForm(), 75, 75, false, false);
+		Image img = new Image(getClass().getClassLoader().getResource("images/" + url + ".png").toExternalForm(), 100, 100, false, false);
 		return img;
 	}
 
@@ -148,7 +149,7 @@ public class GameController implements Initializable {
 	}
 
 	/**Adds image with name imgName  to the StackPane at row,col,position in stack*/
-	//TODO do adding stuff with a posiiton properly
+	//TODO do adding stuff with a posiiton properly (later)
 	private void addImage(int row, int col, String imgName, int position, boolean preserve) {
 		StackPane panel = panels[row][col];
 		ImageView view = new ImageView(getResource(imgName));

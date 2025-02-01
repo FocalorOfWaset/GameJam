@@ -38,18 +38,46 @@ public class Player extends Entity {
         }
         return false;
     }
+
+    private void movePlayer(Level level, Direction d, int x, int y) {
+        Scenery square = level.scenery[this.getY()][this.getX()];
+        boolean isWall = square.isWall(d);
+        if (isWall) {
+            return;
+        }
+        if (this.getY() + y < level.scenery.length && this.getX() + x < level.scenery[0].length) {
+            square = level.scenery[this.getY()+y][this.getX()+x];
+        isWall = square.isWall(oppositeDirection(d));
+        if (isWall) {
+            return;
+        }
+        }
+        this.move(x,y);
+    }
+
+    private Direction oppositeDirection(Direction d) {
+        switch(d) {
+            case N: return Direction.S;
+            case E: return Direction.W;
+            case W: return Direction.E;
+            case S: return Direction.N;
+            case PICKUP: return Direction.PUTDOWN;
+            case PUTDOWN: return Direction.PICKUP;
+        }
+        return d;
+    }
     
     @Override
     void query(Level level, int time) {
         //TODO check for walls and out of bounds
         //TODO add methods to level for adding and removing a piece from updates
       if(level.moved == false) {
-        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), UpdateType.REMOVE));
+        level.updates.add(new Update(this, UpdateType.REMOVE));
         switch(level.d) {
-            case N: this.move(0, -1); break;
-            case S: this.move(0, 1); break;
-            case E: this.move(-1, 0); break;
-            case W: this.move(1, 0); break;
+            case N: this.movePlayer(level, Direction.N, 0, -1); break;
+            case S: this.movePlayer(level, Direction.S, 0, 1); break;
+            case E: this.movePlayer(level, Direction.E, 1, 0); break;
+            case W: this.movePlayer(level, Direction.W, -1, 0); break;
             case PICKUP: {
                 List<Entity> list = level.entities.getEntity(this.getX(), this.getY());
                 if (list != null){
@@ -57,7 +85,7 @@ public class Player extends Entity {
                         if (e instanceof Item) {
                             Item item = (Item)e;
                             if (this.addItem(item, level)) {
-                                level.updates.add(new Update(item.getX(), item.getY(), item.getZIndex(), item.type, item.getImage(), UpdateType.REMOVE));
+                                level.updates.add(new Update(item, UpdateType.REMOVE));
                             }
                         }
                     }
@@ -70,7 +98,7 @@ public class Player extends Entity {
             }
         }
         level.moved = true;
-        level.updates.add(new Update(this.getX(), this.getY(), this.getZIndex(), this.type, this.getImage(), UpdateType.ADD));
+        level.updates.add(new Update(this, UpdateType.ADD));
       }
     }
   }
