@@ -45,7 +45,7 @@ public class Player extends Entity {
         if (isWall) {
             return;
         }
-        if (this.getY() + y < level.scenery.length && this.getX() + x < level.scenery[0].length) {
+        if (this.getY() + y < level.scenery[1].length && this.getX() + x < level.scenery[0].length) {
             square = level.scenery[this.getY()+y][this.getX()+x];
         isWall = square.isWall(oppositeDirection(d));
         if (isWall) {
@@ -79,15 +79,16 @@ public class Player extends Entity {
             case W: this.movePlayer(level, Direction.W, -1, 0); break;
             case PICKUP: {
                 List<Entity> list = level.entities.getEntity(this.getX(), this.getY());
-                for(Entity e : list) {
-                    if (e instanceof Item) {
-                        Item item = (Item)e;
-                        if (this.addItem(item, level)) {
-                            level.updates.add(new Update(item, UpdateType.REMOVE));
+                if (list != null){
+                    for(Entity e : list) {
+                        if (e instanceof Item) {
+                            Item item = (Item)e;
+                            if (this.addItem(item, level)) {
+                                level.updates.add(new Update(item, UpdateType.REMOVE));
+                            }
                         }
                     }
-                }
-                break;}
+                }break;}
             case PUTDOWN: {
                 if(removeItem(level)) {
                     
