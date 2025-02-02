@@ -69,8 +69,7 @@ public class Player extends Entity {
     
     @Override
     void query(Level level, int time) {
-        //TODO check for walls and out of bounds
-        //TODO add methods to level for adding and removing a piece from updates
+        //TODO check for out of bounds
       if(level.moved == false) {
         level.updates.add(new Update(this, UpdateType.REMOVE));
         switch(level.d) {
