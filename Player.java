@@ -45,7 +45,7 @@ public class Player extends Entity {
         if (isWall) {
             return;
         }
-        if (this.getY() + y < level.scenery[level.floor][1].length && this.getX() + x < level.scenery[level.floor][0].length) {
+        if (this.getY() + y < level.scenery[level.floor].length && this.getX() + x < level.scenery[level.floor][0].length) {
             square = level.scenery[level.floor][this.getY()+y][this.getX()+x];
             isWall = square.isWall(oppositeDirection(d));
             if (isWall) {
@@ -53,6 +53,22 @@ public class Player extends Entity {
             }
         }
         this.move(x,y);
+    }
+
+    private void moveOnStairs(Level level, int z) {
+        if (this.getZ() + z >= 0 && this.getZ() + z <= level.scenery.length) {
+            //floor exists
+            List<Entity> ents = level.entities.getEntity(this.getX(), this.getY(), this.getZ());
+            if (ents != null) {
+                for(Entity ent:ents) {
+                    if(ent instanceof Stairs) {
+                        //go on stairs
+                        level.updates.add(new Update(this.getX(), this.getY(), z, this.type, this.getImage(), UpdateType.UP_STAIRS));
+                    }
+                }
+            }
+        }
+        //check for stairs
     }
 
     private Direction oppositeDirection(Direction d) {
@@ -63,6 +79,8 @@ public class Player extends Entity {
             case S: return Direction.N;
             case PICKUP: return Direction.PUTDOWN;
             case PUTDOWN: return Direction.PICKUP;
+            case UP: return Direction.DOWN;
+            case DOWN: return Direction.UP;
         }
         return d;
     }
@@ -95,6 +113,8 @@ public class Player extends Entity {
                 }
                 break;
             }
+            case UP: moveOnStairs(level, 1); break;
+            case DOWN: moveOnStairs(level, -1); break;
         }
         level.moved = true;
         level.updates.add(new Update(this, UpdateType.ADD));
