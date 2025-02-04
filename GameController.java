@@ -205,7 +205,7 @@ public class GameController implements Initializable {
 	}
 
 	public void swapFloor(int swap, int x, int y) {
-
+		this.loadScenery();
 	}
 
 	public void addToInventory(int index, String image) {

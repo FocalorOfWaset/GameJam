@@ -63,12 +63,13 @@ public class Player extends Entity {
                 for(Entity ent:ents) {
                     if(ent instanceof Stairs) {
                         //go on stairs
+                        this.move(z);
+                        level.floor += z;
                         level.updates.add(new Update(this.getX(), this.getY(), z, this.type, this.getImage(), UpdateType.UP_STAIRS));
                     }
                 }
             }
         }
-        //check for stairs
     }
 
     private Direction oppositeDirection(Direction d) {
