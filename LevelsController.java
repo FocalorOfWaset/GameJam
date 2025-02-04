@@ -8,7 +8,7 @@ public class LevelsController {
 	private FileHandler files;
 	
 	@FXML protected void handleExitBtn(ActionEvent event) {
-		Main.ChangeScene(350, "menu.fxml");
+		Main.ChangeScene(750, "menu.fxml");
 	}
 	
 	//TODO load levels from list in folder, not just two hardcoded ones
