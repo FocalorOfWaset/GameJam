@@ -13,7 +13,7 @@ public class Player extends Entity {
     //need to change type when make object class
     public Boolean addItem(Item item, Level level){
         for (int i=0;i<inventory.length;i++){
-            if (inventory[i] == null){
+            if (inventory[i] == null) {
                 inventory[i] = item;
                 item.pickUp();
                 level.updates.add(new Update(0, 0, i, this.type, item.getImage(), UpdateType.ADD_INV));
