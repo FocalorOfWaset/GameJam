@@ -45,7 +45,7 @@ public class GameController implements Initializable {
 	@FXML protected void handleExitBtn(ActionEvent event) {
 		if (timer != null)
 			timer.stop();
-		Main.ChangeScene(350,"menu.fxml");
+		Main.ChangeScene(700,"menu.fxml");
 	}
 
 	@FXML protected void handleStartBtn(ActionEvent event) {
