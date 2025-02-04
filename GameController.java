@@ -166,7 +166,7 @@ public class GameController implements Initializable {
 		//load on scenery images
 		for (int row = 0; row<this.level.getHeight();row++) {
 			for (int col = 0; col<this.level.getWidth();col++) {
-				Scenery scene = this.level.scenery[row][col];
+				Scenery scene = this.level.scenery[this.level.floor][row][col];
 				addImage(row, col, scene.getImage(), scene.getZIndex(),  false);
 			}
 		} 

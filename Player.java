@@ -4,8 +4,8 @@ public class Player extends Entity {
     //players inventory - when make an object class change the type
     protected Item[] inventory;
 
-    public Player(Integer x, Integer y) {
-        super(x, y, "player");
+    public Player(Integer x, Integer y, Integer z) {
+        super(x, y, z, "player");
         inventory = new Item[10];
         //this.setZIndex(1);
     }
@@ -40,17 +40,17 @@ public class Player extends Entity {
     }
 
     private void movePlayer(Level level, Direction d, int x, int y) {
-        Scenery square = level.scenery[this.getY()][this.getX()];
+        Scenery square = level.scenery[level.floor][this.getY()][this.getX()];
         boolean isWall = square.isWall(d);
         if (isWall) {
             return;
         }
-        if (this.getY() + y < level.scenery[1].length && this.getX() + x < level.scenery[0].length) {
-            square = level.scenery[this.getY()+y][this.getX()+x];
-        isWall = square.isWall(oppositeDirection(d));
-        if (isWall) {
-            return;
-        }
+        if (this.getY() + y < level.scenery[level.floor][1].length && this.getX() + x < level.scenery[level.floor][0].length) {
+            square = level.scenery[level.floor][this.getY()+y][this.getX()+x];
+            isWall = square.isWall(oppositeDirection(d));
+            if (isWall) {
+             return;
+            }
         }
         this.move(x,y);
     }
@@ -78,7 +78,7 @@ public class Player extends Entity {
             case E: this.movePlayer(level, Direction.E, 1, 0); break;
             case W: this.movePlayer(level, Direction.W, -1, 0); break;
             case PICKUP: {
-                List<Entity> list = level.entities.getEntity(this.getX(), this.getY());
+                List<Entity> list = level.entities.getEntity(this.getX(), this.getY(), this.getZ());
                 if (list != null){
                     for(Entity e : list) {
                         if (e instanceof Item) {

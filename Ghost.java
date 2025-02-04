@@ -1,8 +1,8 @@
 import java.util.List;
 public class Ghost extends Entity {
 
-    public Ghost(Integer x, Integer y) {
-        super(x, y, "ghost");
+    public Ghost(Integer x, Integer y, Integer z) {
+        super(x, y, z, "ghost");
         //this.setZIndex(1);
     }
 
@@ -42,7 +42,7 @@ public class Ghost extends Entity {
         }
         if (this.getY() + y < level.scenery[1].length && this.getX() + x < level.scenery[0].length)
             
-            this.moveTo(this.getX() + x,this.getY() + y);
+            this.moveTo(this.getX() + x,this.getY() + y, this.getZ());
             level.updates.add(new Update(this, UpdateType.ADD));
     }
   

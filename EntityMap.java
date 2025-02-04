@@ -11,13 +11,13 @@ public class EntityMap {
     this.map = new HashMap<Integer, List<Entity>>();
   }
 
-  public List<Entity> getEntity(int x, int y) {
-    int key = Integer.valueOf(Integer.toString(x) + Integer.toString(y));
+  public List<Entity> getEntity(int x, int y, int z) {
+    int key = Integer.valueOf(Integer.toString(x) + Integer.toString(y) + Integer.toString(z));
     return this.map.get(key);
   }
 
   public void addEntity(Entity ent) {
-    Integer key = Integer.valueOf(Integer.toString(ent.getX()) + Integer.toString(ent.getY()));
+    Integer key = Integer.valueOf(Integer.toString(ent.getX()) + Integer.toString(ent.getY()) + Integer.toString(ent.getZ()));
     List<Entity> ents = this.map.get(key);
     if (ents == null) {
       ents = new ArrayList<Entity>();

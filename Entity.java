@@ -3,8 +3,8 @@
 public abstract class Entity extends Gamepiece {
 
   /**Constructor with coorinates provided seperately */
-  public Entity(int x, int y, String resource) {
-    super(x, y, resource, PieceType.ENTITY);
+  public Entity(int x, int y, int z, String resource) {
+    super(x, y, z, resource, PieceType.ENTITY);
   }
 
   /**Constructor with coordinates provided as array */

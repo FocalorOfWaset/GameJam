@@ -6,7 +6,8 @@ import java.util.List;
 //TODO add getters and setters etc
 public class Level {
   //grid of entities
-  public Scenery[][] scenery;
+  public Scenery[][][] scenery;
+  public int floor;
   //map of entites and coordinates
   public EntityMap entities;
   //direction player piece will move in next
@@ -21,13 +22,14 @@ public class Level {
   public int numItems;
 
   /**Constructs Level object with scenery and entities provided */
-  public Level(Scenery[][] scenery, EntityMap entities, int num) {
+  public Level(Scenery[][][] scenery, EntityMap entities, int num) {
     this.scenery = scenery;
     this.entities = entities;
     this.d = Direction.N;
     this.moved = true;
     this.updates = new ArrayList<>();
     this.numItems = num;
+    this.floor = 0;
   }
 
   /**Sets reference to the user interface */
@@ -61,14 +63,18 @@ public class Level {
     } 
   }
 
+  public int getFloors() {
+    return this.scenery.length;
+  }
+
   /**Returns width of grid of scenery */
   public int getWidth() {
-    return this.scenery[0].length;
+    return this.scenery[0][0].length;
   }
 
   /**Returns height of grid of scenery */
   public int getHeight() {
-    return this.scenery.length;
+    return this.scenery[0].length;
   }
 
   /**Returns all entities in level as a list */

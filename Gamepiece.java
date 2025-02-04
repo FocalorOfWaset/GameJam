@@ -16,8 +16,8 @@ public class Gamepiece {
     this.type = type;
   }
   /**Constructor with coordinates provided seperately */
-  public Gamepiece(int x, int y, String resource, PieceType type) {
-    int[] coordinates = {x,y};
+  public Gamepiece(int x, int y, int z, String resource, PieceType type) {
+    int[] coordinates = {x,y,z};
     this.coords = coordinates;
     this.image = resource;
     this.type = type;
@@ -38,14 +38,21 @@ public class Gamepiece {
   public int getY() {
     return this.coords[1];
   }
+  public int getZ() {
+    return this.coords[2];
+  }
   /**Adds the provided offsets to the coordinates of the object */
   public void move(int x, int y) {
     coords[0] += x;
     coords[1] += y;
   }
 
+  public void move(int z) {
+    coords[2] += z;
+  }
+
   /**Changes the coordinates to the provided values */
-  public void moveTo(int x , int y) {
+  public void moveTo(int x , int y, int z) {
     coords[0] = x;
     coords[1] = y;
   }
