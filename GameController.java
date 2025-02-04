@@ -208,10 +208,10 @@ public class GameController implements Initializable {
 		this.inventoryBox.getChildren().remove(index);
 	}
 
-	public void endGame() {
+	public void endGame(Text text) {
 		timer.stop();
 		int index = this.root.getChildren().indexOf(this.inventoryBox);
 		this.root.getChildren().remove(this.inventoryBox);
-		this.root.getChildren().add(index, new Text("You have won!"));
+		this.root.getChildren().add(index, text);
 	}
 }

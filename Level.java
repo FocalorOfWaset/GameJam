@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.text.Text;
 /**Stores information on a level including scenery and entities */
 //TODO add support for multiple layers
 //TODO add getters and setters etc
@@ -59,7 +60,7 @@ public class Level {
     this.ui.updateBoard(this.updates);
     if(this.numItems == 0 ) {
       //win game
-      this.ui.endGame();
+      this.ui.endGame(new Text("You have won!"));
     } 
   }
 
@@ -85,6 +86,6 @@ public class Level {
   }
 
   public void end() {
-    this.ui.endGame();
+    this.ui.endGame(new Text("You lost :("));
   }
 }
