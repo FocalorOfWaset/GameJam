@@ -4,6 +4,6 @@ import javafx.fxml.FXML;
 
 public class SettingsController {
 	@FXML protected void handleSaveBtn(ActionEvent event) {
-		Main.ChangeScene(350,"menu.fxml");
+		Main.ChangeScene(700,"menu.fxml");
 	}
 }

@@ -20,7 +20,7 @@ public class Main extends Application {
 			//window.setFullScreen(true);
 			window.show();
 			//opens scene
-			ChangeScene(350,"menu.fxml");
+			ChangeScene(700,"menu.fxml");
 	}
 	
 	//launches the JavaFX application

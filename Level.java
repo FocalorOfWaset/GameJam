@@ -53,7 +53,9 @@ public class Level {
     for (List<Entity> ents:this.entities.getAll()) {
       for (Entity ent : ents) {
         //queries every entity (may update this.updates)
-        ent.query(this, time);
+        if (ent.getZ() == floor) {
+          ent.query(this, time);
+        }
       }
     }
     //displays updates

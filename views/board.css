@@ -33,7 +33,7 @@
 	-fx-border-color: rgb(98, 51, 9) ;
     -fx-border-width: 5 ; 
     -fx-border-style: segments(5, 2, 5, 2) ;
-	-fx-font-size:40px;
+	-fx-font-size:30px;
 }
 #title {
 	-fx-font-family: "Tiny5";

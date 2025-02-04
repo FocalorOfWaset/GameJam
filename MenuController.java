@@ -13,10 +13,10 @@ public class MenuController {
 	}
 	
 	@FXML protected void handleSettingsBtn(ActionEvent event) {
-		Main.ChangeScene(350,"settings.fxml");
+		Main.ChangeScene(700,"settings.fxml");
 	}
 
 	@FXML protected void handlePlayBtn(ActionEvent event) {
-		Main.ChangeScene(350,"levels.fxml");
+		Main.ChangeScene(700,"levels.fxml");
 	}
 }
