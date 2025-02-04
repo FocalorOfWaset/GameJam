@@ -1,7 +1,7 @@
 public class Stairs extends Entity {
 
   public Stairs(Integer x, Integer y, Integer z) {
-    super(x,y,z,"stairs.png");
+    super(x,y,z,"stairs");
   }
 
   @Override

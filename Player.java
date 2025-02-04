@@ -56,7 +56,7 @@ public class Player extends Entity {
     }
 
     private void moveOnStairs(Level level, int z) {
-        if (this.getZ() + z >= 0 && this.getZ() + z <= level.scenery.length) {
+        if (this.getZ() + z >= 0 && this.getZ() + z < level.scenery.length) {
             //floor exists
             List<Entity> ents = level.entities.getEntity(this.getX(), this.getY(), this.getZ());
             if (ents != null) {

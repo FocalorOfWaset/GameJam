@@ -175,6 +175,7 @@ public class GameController implements Initializable {
 		} 
 		//overlay entity images
 		for (Entity ent : this.level.getAllEntities()) {
+			if (ent.getZ() == level.floor)
 			addImage(ent.getY(), ent.getX(), ent.getImage(), ent.getZIndex(), true);
 		}
 	}
