@@ -11,7 +11,7 @@
 <VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuController">
 
 	<children>
-		<Text id="title">Game Name Here</Text>
+		<Text id="title">Last of the Babylonians</Text>
 		<Button onAction="#handlePlayBtn" prefWidth="300.0">Play</Button>
 		<Button onAction="#handleSettingsBtn" prefWidth="300.0">Options</Button>
 		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="300.0">Close</Button>

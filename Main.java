@@ -14,8 +14,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		//creates window
 			window = new Stage();
-			window.getIcons().add(new Image(Main.class.getResource("images/blackPawn.png").toExternalForm()));
-			window.setTitle("Game Name");
+			window.getIcons().add(new Image(Main.class.getResource("images/pot.png").toExternalForm()));
+			window.setTitle("Last of the Babylonians");
 			window.setResizable(true);
 			//window.setFullScreen(true);
 			window.show();
