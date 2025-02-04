@@ -66,6 +66,7 @@ public class Player extends Entity {
                         this.move(z);
                         level.floor += z;
                         level.updates.add(new Update(this.getX(), this.getY(), z, this.type, this.getImage(), UpdateType.UP_STAIRS));
+                        level.updates.add(new Update(this, UpdateType.REMOVE));
                     }
                 }
             }
