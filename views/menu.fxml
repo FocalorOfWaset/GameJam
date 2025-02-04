@@ -13,7 +13,7 @@
 	<children>
 		<Text id="title">Last of the Babylonians</Text>
 		<Button onAction="#handlePlayBtn" prefWidth="300.0">Play</Button>
-		<Button onAction="#handleSettingsBtn" prefWidth="300.0">Options</Button>
+		<Button onAction="#handleSettingsBtn" prefWidth="300.0">Insttuctions</Button>
 		<Button fx:id="exitBtn" id="backBtn" onAction="#handleExitBtn" prefWidth="300.0">Close</Button>
 	</children>
 	<padding>
