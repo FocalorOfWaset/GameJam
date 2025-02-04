@@ -94,6 +94,8 @@ public class GameController implements Initializable {
 					case KeyCode.D: this.level.logKey(Direction.E); break;
 					case KeyCode.E: this.level.logKey(Direction.PICKUP); break;
 					case KeyCode.Q: this.level.logKey(Direction.PUTDOWN); break;
+					case KeyCode.U: this.level.logKey(Direction.UP); break;
+					case KeyCode.Y: this.level.logKey(Direction.DOWN); break;
 					default: ;
 				}
 		});
@@ -184,6 +186,9 @@ public class GameController implements Initializable {
 				addToInventory(piece.zIndex, piece.image);
 			} else if (piece.uptype == UpdateType.REMOVE_INV) {
 				removeFromInventory(piece.zIndex);
+			} else if (piece.uptype == UpdateType.UP_STAIRS) {
+				int swap = piece.zIndex; //-1 for down or 1 for up, x and y of player
+				swapFloor(swap, piece.x, piece.y);
 			} else {
 				if (piece.type == PieceType.SCENERY) {
 					addImage(piece.y, piece.x, piece.image, piece.zIndex, true);
@@ -197,6 +202,10 @@ public class GameController implements Initializable {
 				}
 			}
 		}
+	}
+
+	public void swapFloor(int swap, int x, int y) {
+		this.loadScenery();
 	}
 
 	public void addToInventory(int index, String image) {

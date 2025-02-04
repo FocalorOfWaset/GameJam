@@ -40,7 +40,7 @@ public class Ghost extends Entity {
             }else
                 y = -1;
         }
-        if (this.getY() + y < level.scenery[1].length && this.getX() + x < level.scenery[0].length)
+        if (this.getY() + y < level.scenery[level.floor].length && this.getX() + x < level.scenery[level.floor][0].length)
             
             this.moveTo(this.getX() + x,this.getY() + y, this.getZ());
             level.updates.add(new Update(this, UpdateType.ADD));

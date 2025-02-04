@@ -6,5 +6,7 @@ public enum Direction {
   S,
   W,
   PICKUP,
-  PUTDOWN
+  PUTDOWN,
+  UP,
+  DOWN
 }
