@@ -12,7 +12,9 @@
 
 <VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsController">
 	<children>
-		<Text id="title">Settings</Text>
+		<Text id="title">How to Play</Text>
+		<Text id="instructions">Use W, A, S and D to move. </Text>
+		<Text id="instructions2">Use E to pick up an object and Q to place it</Text>
 		<HBox alignment="CENTER" spacing="10.0">
 			<Button id="backBtn" onAction="#handleSaveBtn">Save and Close</Button>
 		</HBox>
