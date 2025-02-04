@@ -20,8 +20,8 @@ public class Scenery extends Gamepiece {
   }
 
   /**Constructor with coorinates provided seperately */
-  public Scenery(int x, int y,  boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
-    super(x, y, "", PieceType.SCENERY);
+  public Scenery(int x, int y, int z,  boolean northWall, boolean eastWall, boolean southWall, boolean westWall) {
+    super(x, y,z, "", PieceType.SCENERY);
     //create enum map of walls
     this.walls = new EnumMap<>(Direction.class);
     this.walls.put(Direction.N, northWall);
