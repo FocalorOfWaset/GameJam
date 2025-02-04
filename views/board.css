@@ -65,3 +65,13 @@
 	/*Can change this to image if want*/
 	-fx-background-color: #f9d16c;
 }
+
+#instructions{
+	-fx-font-family: "Tiny5";
+	-fx-font-size: 30px;
+}
+
+#instructions2{
+	-fx-font-family: "Tiny5";
+	-fx-font-size: 30px;
+}
